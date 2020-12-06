@@ -23,6 +23,6 @@ export class UsersServerServiceService implements UsersRepository {
   }
 
   query(): Observable<Users> {
-    return undefined;
+    return this.httpClient.get<Users>(UsersServerServiceService.URL);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UsersServerServiceService} from '../../repositories/users-server-service.service';
+import {catchError} from 'rxjs/operators';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -17,10 +18,15 @@ export class SignInFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private usersService: UsersServerServiceService) { }
 
   ngOnInit(): void {
+    // TODO A retirer test
+    this.usersService.query()
+      .subscribe(
+        users => console.log(users),
+        err => console.log(err.error.message)
+      );
   }
 
   submit(): void {
-    console.log(this.signInFrom.value);
     this.usersService.authenticate(this.signInFrom.value)
       .subscribe(user => {
         console.log(user);
