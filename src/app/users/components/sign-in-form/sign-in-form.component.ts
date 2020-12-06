@@ -24,7 +24,6 @@ export class SignInFormComponent implements OnInit {
     this.usersService.authenticate(this.signInFrom.value)
       .subscribe(user => {
         console.log(user);
-        this.usersService.saveToken(user.token);
       });
   }
 }
