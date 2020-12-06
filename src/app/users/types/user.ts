@@ -8,7 +8,8 @@ export interface User {
   email: string;
   gender: string;
   administrator: boolean;
-  address: Address;
+  address?: Address;
+  token?: string;
 }
 
 export declare type Users = User[];
