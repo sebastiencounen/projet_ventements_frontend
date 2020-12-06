@@ -15,10 +15,18 @@ export class UsersServerServiceService implements UsersRepository {
   constructor(private httpClient: HttpClient) {}
 
   authenticate(user: User): Observable<User> {
-    return this.httpClient.post<User>(UsersServerServiceService.URL + 'authenticate', user);
+    return this.httpClient.post<User>(UsersServerServiceService.URL + '/authenticate', user);
   }
 
   query(): Observable<Users> {
     return undefined;
+  }
+
+  saveToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
+
+  getToken(): string {
+    return localStorage.getItem('token');
   }
 }

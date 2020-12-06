@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UsersServerServiceService} from '../../repositories/users-server-service.service';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -13,12 +14,17 @@ export class SignInFormComponent implements OnInit {
     passwordUser: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private usersService: UsersServerServiceService) { }
 
   ngOnInit(): void {
   }
 
   submit(): void {
     console.log(this.signInFrom.value);
+    this.usersService.authenticate(this.signInFrom.value)
+      .subscribe(user => {
+        console.log(user);
+        this.usersService.saveToken(user.token);
+      });
   }
 }
