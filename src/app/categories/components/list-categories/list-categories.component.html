@@ -1,0 +1,20 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-3" *ngFor="let c of categories">
+        <a routerLink="/categories/cat">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <h2 class="title">{{ c.title }}</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
