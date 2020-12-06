@@ -15,7 +15,7 @@ export class SignUpFormComponent implements OnInit {
     birthdate: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     userPassword: ['', [Validators.minLength(6), Validators.required]],
-    gender: [null, Validators.required]
+    gender: ['', Validators.required]
   });
 
   constructor(private fb: FormBuilder, private usersService: UsersServerServiceService) {}
