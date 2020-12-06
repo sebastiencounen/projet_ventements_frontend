@@ -32,4 +32,13 @@ export class UsersServerServiceService implements UsersRepository {
         tap(user => localStorage.setItem('token', user.token))
       );
   }
+
+  getUserIdViaToken(): number {
+    const token = localStorage.getItem('token');
+
+    const jwtPayload = token.split('.')[1];
+    const decodedJwtPayload = JSON.parse(window.atob(jwtPayload));
+
+    return decodedJwtPayload.id;
+  }
 }
