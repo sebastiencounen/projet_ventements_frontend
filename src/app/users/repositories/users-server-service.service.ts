@@ -27,6 +27,9 @@ export class UsersServerServiceService implements UsersRepository {
   }
 
   post(user: User): Observable<User> {
-    return this.httpClient.post<User>(UsersServerServiceService.URL, user);
+    return this.httpClient.post<User>(UsersServerServiceService.URL, user)
+      .pipe(
+        tap(user => localStorage.setItem('token', user.token))
+      );
   }
 }

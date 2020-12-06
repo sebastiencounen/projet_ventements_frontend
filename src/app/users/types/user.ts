@@ -9,7 +9,7 @@ export interface User {
   passwordUser?: string;
   gender?: string;
   administrator?: boolean;
-  address?: Address;
+  userAddress?: Address;
   token?: string;
 }
 

@@ -6,19 +6,30 @@
           <h2 class="title">Connectez-vous</h2>
           <form [formGroup]="signInFrom" (ngSubmit)="submit()">
             <div class="field">
-              <div class="control">
+              <p class="control has-icons-left has-icons-right">
                 <input type="email" class="input" placeholder="Email" formControlName="email">
-              </div>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </p>
             </div>
             <div class="field">
-              <div class="control">
+              <p class="control has-icons-left">
                 <input type="password" class="input" placeholder="Mot de passe" formControlName="passwordUser">
-              </div>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
             </div>
             <div class="field">
-              <button type="submit" class="button is-primary is-fullwidth">Se connecter</button>
+              <button type="submit" class="button is-success is-fullwidth" [disabled]="signInFrom.invalid">
+                Se connecter
+              </button>
             </div>
-            <span>Vous n'avez pas encore de compte ? <a href="">Inscrivez vous !</a></span>
+            <span>Vous n'avez pas encore de compte ? <a routerLink="/users/sign-up">Inscrivez vous !</a></span>
           </form>
         </div>
       </div>

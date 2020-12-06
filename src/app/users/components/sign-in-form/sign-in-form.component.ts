@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UsersServerServiceService} from '../../repositories/users-server-service.service';
 import {catchError} from 'rxjs/operators';
+import {Users} from '../../types/user';
 
 @Component({
   selector: 'app-sign-in-form',
