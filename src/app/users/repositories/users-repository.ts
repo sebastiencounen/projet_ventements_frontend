@@ -5,4 +5,6 @@ export interface UsersRepository {
   query(): Observable<Users>;
 
   authenticate(user: User): Observable<User>;
+
+  post(user: User): Observable<User>;
 }

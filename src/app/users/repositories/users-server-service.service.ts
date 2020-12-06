@@ -25,4 +25,8 @@ export class UsersServerServiceService implements UsersRepository {
   query(): Observable<Users> {
     return this.httpClient.get<Users>(UsersServerServiceService.URL);
   }
+
+  post(user: User): Observable<User> {
+    return this.httpClient.post<User>(UsersServerServiceService.URL, user);
+  }
 }
