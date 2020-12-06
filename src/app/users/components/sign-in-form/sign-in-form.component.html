@@ -1,1 +1,26 @@
-<p>sign-in-form works!</p>
+<div class="container is-fluid">
+  <section class="section">
+    <div class="container has-text-centered">
+      <div class="columns is-centered">
+        <div class="column is-5 is-4-desktop">
+          <h2 class="title">Authentifiez-vous</h2>
+          <form [formGroup]="signInFrom" (ngSubmit)="submit()">
+            <div class="field">
+              <div class="control">
+                <input type="email" class="input" placeholder="Email" formControlName="email">
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input type="password" class="input" placeholder="Mot de passe" formControlName="passwordUser">
+              </div>
+            </div>
+            <div class="field">
+              <button type="submit" class="button is-primary is-fullwidth">Se connecter</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
