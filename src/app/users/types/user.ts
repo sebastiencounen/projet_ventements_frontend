@@ -1,3 +1,5 @@
+import {Address} from './address';
+
 export interface User {
   id?: number;
   firstname: string;
@@ -6,7 +8,7 @@ export interface User {
   email: string;
   gender: string;
   administrator: boolean;
-  addressId?: number;
+  address: Address;
 }
 
 export declare type Users = User[];
