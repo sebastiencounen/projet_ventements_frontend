@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../../types/user';
+import {UsersServerServiceService} from '../../repositories/users-server-service.service';
 
 @Component({
   selector: 'app-manage-user',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageUserComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+
+  constructor(private usersService: UsersServerServiceService) {}
 
   ngOnInit(): void {
+    const userId: number = this.usersService.getUserIdViaToken();
+
+    if (userId) {
+      this.usersService.getById(userId)
+        .subscribe(
+          user => this.user = user,
+          err => console.log(err.error.message)
+        );
+    }
   }
 
 }

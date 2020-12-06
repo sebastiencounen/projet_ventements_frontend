@@ -7,4 +7,6 @@ export interface UsersRepository {
   authenticate(user: User): Observable<User>;
 
   post(user: User): Observable<User>;
+
+  getById(id: number): Observable<User>;
 }

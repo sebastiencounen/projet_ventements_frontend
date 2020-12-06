@@ -33,6 +33,10 @@ export class UsersServerServiceService implements UsersRepository {
       );
   }
 
+  getById(id: number): Observable<User> {
+    return this.httpClient.get<User>(UsersServerServiceService.URL + '/' + id);
+  }
+
   getUserIdViaToken(): number {
     const token = localStorage.getItem('token');
 
