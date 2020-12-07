@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Items} from '../../types/item';
+import {ItemsServerService} from '../../repositories/items-server.service';
+import {ActivatedRoute} from '@angular/router';
+import {filter, map, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-manage-items',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageItemsComponent implements OnInit {
 
-  constructor() { }
+  items: Items;
+
+  constructor(private itemsService: ItemsServerService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.initItems();
   }
 
+  private initItems() {
+    this.route.paramMap.pipe(
+      filter(params => +params.get('idSubcategory') !== 0),
+      map(params => +params.get('idSubcategory')),
+      switchMap(id => this.itemsService.getItemsByCategoryId(id))
+    ).subscribe(items => this.items = items);
+  }
 }

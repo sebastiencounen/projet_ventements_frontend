@@ -7,10 +7,13 @@ import { ListItemsComponent } from './components/list-items/list-items.component
 
 
 @NgModule({
-  declarations: [ManageItemsComponent, ListItemsComponent],
-  imports: [
-    CommonModule,
-    ItemsRoutingModule
-  ]
+    declarations: [ItemsRoutingModule.components],
+    exports: [
+        ManageItemsComponent
+    ],
+    imports: [
+        CommonModule,
+        ItemsRoutingModule
+    ]
 })
 export class ItemsModule { }

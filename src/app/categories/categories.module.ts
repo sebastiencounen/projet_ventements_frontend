@@ -6,6 +6,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { ListSubcategoriesComponent } from './components/list-subcategories/list-subcategories.component';
 import { ManageSubcategoriesComponent } from './components/manage-subcategories/manage-subcategories.component';
 import {FormsModule} from '@angular/forms';
+import {ItemsModule} from '../items/items.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {FormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     HttpClientModule,
-    CategoriesRoutingModule
+    CategoriesRoutingModule,
+    ItemsModule
   ]
 })
 export class CategoriesModule { }
