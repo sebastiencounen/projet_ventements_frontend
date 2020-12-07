@@ -13,7 +13,6 @@ import {ItemsModule} from '../items/items.module';
   declarations: [CategoriesRoutingModule.components],
   imports: [
     CommonModule,
-    HttpClientModule,
     CategoriesRoutingModule,
     ItemsModule
   ]
