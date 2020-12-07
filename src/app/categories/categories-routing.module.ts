@@ -4,13 +4,14 @@ import {ManageCategoriesComponent} from './components/manage-categories/manage-c
 import {ListCategoriesComponent} from './components/list-categories/list-categories.component';
 import {ManageSubcategoriesComponent} from './components/manage-subcategories/manage-subcategories.component';
 import {ListSubcategoriesComponent} from './components/list-subcategories/list-subcategories.component';
+import {ManageItemsComponent} from '../items/components/manage-items/manage-items.component';
 
 const routes: Routes = [
   {
     path: 'categories', component: ManageCategoriesComponent,
   },
   {
-    path: 'categories/:id', component: ManageSubcategoriesComponent
+    path: 'categories/:idCategory/subcategories/:idSubcategory/items', component: ManageItemsComponent
   }
 ];
 
