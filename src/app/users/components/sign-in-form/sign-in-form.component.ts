@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UsersServerServiceService} from '../../repositories/users-server-service.service';
 import {catchError} from 'rxjs/operators';
 import {Users} from '../../types/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -16,7 +17,7 @@ export class SignInFormComponent implements OnInit {
     passwordUser: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private usersService: UsersServerServiceService) { }
+  constructor(private fb: FormBuilder, private usersService: UsersServerServiceService, private router: Router) { }
 
   ngOnInit(): void {
     // TODO A retirer test
@@ -31,6 +32,7 @@ export class SignInFormComponent implements OnInit {
     this.usersService.authenticate(this.signInFrom.value)
       .subscribe(user => {
         console.log(user);
+        this.router.navigate(['/users']);
       });
   }
 }

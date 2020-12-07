@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UsersServerServiceService} from '../../repositories/users-server-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -18,7 +19,7 @@ export class SignUpFormComponent implements OnInit {
     gender: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private usersService: UsersServerServiceService) {}
+  constructor(private fb: FormBuilder, private usersService: UsersServerServiceService, private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -26,7 +27,7 @@ export class SignUpFormComponent implements OnInit {
   submit(): void {
     this.usersService.post(this.signUpForm.value)
       .subscribe(
-        user => console.log(user),
+        user => this.router.navigate(['/users']),
         err => console.log(err.error.message)
       );
   }
