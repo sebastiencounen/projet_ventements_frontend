@@ -1,5 +1,34 @@
-<ul>
-  <li *ngFor="let item of items">
-    {{ item.label }}
-  </li>
-</ul>
+<section class="section">
+  <div class="container">
+    <div class="columns is-left">
+      <div class="column is-2" *ngFor="let item of items">
+        <a routerLink="">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img src="{{ item.imageItem }}" alt="Placeholder image">
+              </figure>
+            </div>
+
+            <div class="card-content">
+              <div class="columns mb-5">
+                <div class="is-align-content-flex-start">
+                  <p class="subtitle is-5">{{ item.label }}</p>
+                </div>
+              </div>
+<!--              <div class="level-container">-->
+<!--                <div class="level-left">-->
+<!--                  <p class="level-item">{{ item.price }}€</p>-->
+<!--                </div>-->
+<!--              </div>-->
+              <div class="columns is-flex-direction-row is-justify-content-space-between">
+                <div class="title is-5 my-1">{{ item.price }}€</div>
+                <div class="title is-5 my-1">o</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
