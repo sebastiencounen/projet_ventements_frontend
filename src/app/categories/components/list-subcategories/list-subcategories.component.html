@@ -1,1 +1,17 @@
-<p>list-subcategories works!</p>
+<section>
+  <div class="container">
+    <h1 class="title">{{ category.title }}</h1>
+    <ul class="columns is-flex-direction-column mx-2">
+      <li class="column p-0 m-0" *ngFor="let cat of categories">
+        <h2 class="subtitle is-size-5 has-text-weight-semibold p-0 m-0" [ngStyle]="{'color': cat.title == category.title ? 'blue' : 'dark'}">
+          {{ cat.title }}
+        </h2>
+        <div *ngFor="let sub of cat.subCategories">
+          <h3 class="subtitle is-size-6 mx-2 my-1" *ngIf="cat.title == category.title">
+            {{ sub.title }}
+          </h3>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

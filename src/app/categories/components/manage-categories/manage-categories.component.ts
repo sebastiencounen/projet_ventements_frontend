@@ -20,7 +20,6 @@ export class ManageCategoriesComponent implements OnInit {
   private getCategories() {
     this.categoriesService.query().subscribe(
       categories => this.categories = categories
-      // categories => console.log(categories)
     );
   }
 }

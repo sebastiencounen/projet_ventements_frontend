@@ -8,12 +8,9 @@ import {ListSubcategoriesComponent} from './components/list-subcategories/list-s
 const routes: Routes = [
   {
     path: 'categories', component: ManageCategoriesComponent,
-    // children: [
-    //   { path: 'cat', component: ManageSubcategoriesComponent}
-    // ]
   },
   {
-    path: 'categories/cat', component: ManageSubcategoriesComponent
+    path: 'categories/:id', component: ManageSubcategoriesComponent
   }
 ];
 

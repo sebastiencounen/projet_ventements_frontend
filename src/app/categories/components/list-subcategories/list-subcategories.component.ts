@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Categories, Category} from '../../types/category';
 
 @Component({
   selector: 'app-list-subcategories',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-subcategories.component.scss']
 })
 export class ListSubcategoriesComponent implements OnInit {
+
+  @Input() category: Category;
+  @Input() categories: Categories;
 
   constructor() { }
 

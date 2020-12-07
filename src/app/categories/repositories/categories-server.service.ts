@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {CategoriesRepository} from './categories-repository';
 import {Observable} from 'rxjs';
-import {Categories} from '../types/category';
+import {Categories, Category} from '../types/category';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 
@@ -16,5 +16,9 @@ export class CategoriesServerService implements CategoriesRepository {
 
   query(): Observable<Categories> {
     return this.httpClient.get<Categories>(CategoriesServerService.URL);
+  }
+
+  getCategoryById(id: number): Observable<Category> {
+    return this.httpClient.get<Category>(CategoriesServerService.URL + '/' + id);
   }
 }
