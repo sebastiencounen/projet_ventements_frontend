@@ -20,12 +20,6 @@ export class SignInFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private usersService: UsersServerServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    // TODO A retirer test
-    this.usersService.query()
-      .subscribe(
-        users => console.log(users),
-        err => console.log(err.error.message)
-      );
   }
 
   submit(): void {

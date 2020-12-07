@@ -59,7 +59,6 @@ export class UsersServerServiceService implements UsersRepository {
 
   isAuthenticated(): Promise<boolean> {
     const userId = this.getUserIdViaToken();
-    console.log(userId);
 
     return new Promise((resolve, reject) => {
       if (userId) {

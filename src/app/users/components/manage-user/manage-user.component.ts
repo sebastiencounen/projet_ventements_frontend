@@ -10,7 +10,7 @@ import {Address} from '../../types/address';
 })
 export class ManageUserComponent implements OnInit {
 
-  user: User;
+  user: User = { email: '', userAddress: null };
 
   constructor(private usersService: UsersServerServiceService) {}
 
