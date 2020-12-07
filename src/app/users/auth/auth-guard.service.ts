@@ -11,30 +11,17 @@ export class AuthGuardService implements CanActivate {
   constructor(private usersService: UsersServerServiceService, private router: Router) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    const userId = this.usersService.getUserIdViaToken();
-    if (!userId) return false;
-
-    this.usersService.getById(userId)
-      .subscribe(
-        user => {
-            if (user) {
-              return true;
-            } else {
-              localStorage.removeItem('token');
-              this.router.navigate(['/users', 'sign-in']);
-              return false;
-            }
-        },
-        err => {
-          localStorage.removeItem('token');
-          this.router.navigate(['/users', 'sign-in']);
-          return false;
-        }
-      );
-
-    return undefined;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
+    return new Promise((resolve, reject) => {
+      this.usersService.isAuthenticated()
+        .then(result => {
+          if (!result) {
+            this.router.navigate(['/users', 'sign-in']);
+            localStorage.removeItem('token');
+          }
+          resolve(result);
+        })
+        .catch(err => resolve(false));
+    });
   }
 }

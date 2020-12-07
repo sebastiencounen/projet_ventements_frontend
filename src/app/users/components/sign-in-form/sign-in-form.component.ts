@@ -33,6 +33,7 @@ export class SignInFormComponent implements OnInit {
       .subscribe(user => {
         console.log(user);
         this.router.navigate(['/users']);
+        // this.router.navigate(['/']);
       });
   }
 }

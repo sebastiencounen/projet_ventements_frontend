@@ -5,9 +5,10 @@ import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.compon
 import {ManageUserComponent} from './components/manage-user/manage-user.component';
 import {UserInformationComponent} from './components/user-information/user-information.component';
 import {RegisterAddressFormComponent} from './components/register-address-form/register-address-form.component';
+import {AuthGuardService} from './auth/auth-guard.service';
 
 const routes: Routes = [
-  { path: 'users', component: ManageUserComponent,
+  { path: 'users', canActivate: [AuthGuardService], component: ManageUserComponent,
     children: [
       { path: '', redirectTo: 'user-information', pathMatch: 'full' },
       { path: 'user-information', component: UserInformationComponent }

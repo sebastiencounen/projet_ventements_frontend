@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {UsersRepository} from './users-repository';
 import {User, Users} from '../types/user';
 import {Observable} from 'rxjs';
@@ -14,7 +14,8 @@ export class UsersServerServiceService implements UsersRepository {
 
   private static readonly URL: string = environment.serverAddress + '/users';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   authenticate(user: User): Observable<User> {
     return this.httpClient.post<User>(UsersServerServiceService.URL + '/authenticate', user)
@@ -54,5 +55,25 @@ export class UsersServerServiceService implements UsersRepository {
     const decodedJwtPayload = JSON.parse(window.atob(jwtPayload));
 
     return decodedJwtPayload.id;
+  }
+
+  isAuthenticated(): Promise<boolean> {
+    const userId = this.getUserIdViaToken();
+    console.log(userId);
+
+    return new Promise((resolve, reject) => {
+      if (userId) {
+        this.getById(userId)
+          .subscribe(user => {
+            if (user) {
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          }, err => reject(false));
+      } else {
+        resolve(false);
+      }
+    });
   }
 }
