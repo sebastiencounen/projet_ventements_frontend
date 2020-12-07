@@ -13,8 +13,7 @@ import {FormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     HttpClientModule,
-    CategoriesRoutingModule,
-    FormsModule
+    CategoriesRoutingModule
   ]
 })
 export class CategoriesModule { }
