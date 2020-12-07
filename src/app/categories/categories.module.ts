@@ -5,6 +5,7 @@ import { CategoriesRoutingModule } from './categories-routing.module';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { ListSubcategoriesComponent } from './components/list-subcategories/list-subcategories.component';
 import { ManageSubcategoriesComponent } from './components/manage-subcategories/manage-subcategories.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { ManageSubcategoriesComponent } from './components/manage-subcategories/
   imports: [
     CommonModule,
     HttpClientModule,
-    CategoriesRoutingModule
+    CategoriesRoutingModule,
+    FormsModule
   ]
 })
 export class CategoriesModule { }

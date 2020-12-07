@@ -1,11 +1,13 @@
 <section>
   <div class="container">
     <h1 class="title">{{ category.title }}</h1>
-    <ul class="columns is-flex-direction-column mx-2">
-      <li class="column p-0 m-0" *ngFor="let cat of categories">
-        <h2 class="subtitle is-size-5 has-text-weight-semibold p-0 m-0" [ngStyle]="{'color': cat.title == category.title ? 'blue' : 'dark'}">
-          {{ cat.title }}
-        </h2>
+    <ul class="columns is-flex-direction-column m-0">
+      <li class="column p-0 m-0" *ngFor="let cat of categories; let i = index;">
+        <a [routerLink]="['/categories', i + 1]">
+            <h2 class="subtitle is-size-5 has-text-weight-semibold p-0 m-0">
+            {{ cat.title }}
+          </h2>
+        </a>
         <div *ngFor="let sub of cat.subCategories">
           <h3 class="subtitle is-size-6 mx-2 my-1" *ngIf="cat.title == category.title">
             {{ sub.title }}
