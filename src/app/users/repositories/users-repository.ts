@@ -1,5 +1,6 @@
 import {Observable} from 'rxjs';
 import {User, Users} from '../types/user';
+import {Address} from '../types/address';
 
 export interface UsersRepository {
   query(): Observable<Users>;
@@ -9,4 +10,6 @@ export interface UsersRepository {
   post(user: User): Observable<User>;
 
   getById(id: number): Observable<User>;
+
+  registerAddress(userId: number, address: Address): Observable<Address>;
 }

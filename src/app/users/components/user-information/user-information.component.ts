@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {User} from '../../types/user';
 import {UsersServerServiceService} from '../../repositories/users-server-service.service';
 
@@ -7,7 +7,7 @@ import {UsersServerServiceService} from '../../repositories/users-server-service
   templateUrl: './user-information.component.html',
   styleUrls: ['./user-information.component.scss']
 })
-export class UserInformationComponent implements OnInit {
+export class UserInformationComponent implements OnInit, OnChanges {
 
   @Input()
   user: User;
@@ -17,4 +17,9 @@ export class UserInformationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['user'].currentValue) {
+      this.user = changes['user'].currentValue;
+    }
+  }
 }

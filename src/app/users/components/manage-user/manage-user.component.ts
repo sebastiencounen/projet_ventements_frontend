@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../types/user';
 import {UsersServerServiceService} from '../../repositories/users-server-service.service';
+import {Address} from '../../types/address';
 
 @Component({
   selector: 'app-manage-user',
@@ -25,4 +26,11 @@ export class ManageUserComponent implements OnInit {
     }
   }
 
+  postAddress(address: Address): void {
+    this.usersService.registerAddress(this.user.id, address)
+      .subscribe(
+        address => this.user.userAddress = address,
+        err => console.log(err.error.message)
+      );
+  }
 }

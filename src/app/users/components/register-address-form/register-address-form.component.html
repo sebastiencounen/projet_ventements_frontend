@@ -1,1 +1,29 @@
-<p>register-address-form works!</p>
+<h2 class="title is-centered">Ajouter votre adresse</h2>
+<form [formGroup]="formAddress" (ngSubmit)="submit()">
+  <div class="field">
+    <div class="control">
+      <input type="text" class="input" placeholder="Rue" formControlName="street">
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <input type="number" class="input" placeholder="Numéro" formControlName="homeNumber">
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <input type="text" class="input" placeholder="Code postal" formControlName="zip">
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <input type="text" class="input" placeholder="Ville" formControlName="city">
+    </div>
+  </div>
+  <div class="field">
+    <button type="submit" class="button is-primary is-fullwidth" [disabled]="formAddress.invalid">
+      Ajouter l'adresse
+    </button>
+  </div>
+</form>
+

@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
+import {Address} from '../types/address';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,10 @@ export class UsersServerServiceService implements UsersRepository {
 
   getById(id: number): Observable<User> {
     return this.httpClient.get<User>(UsersServerServiceService.URL + '/' + id);
+  }
+
+  registerAddress(userId: number, address: Address): Observable<Address> {
+    return this.httpClient.post<Address>(UsersServerServiceService.URL + '/' + userId + '/address', address);
   }
 
   getUserIdViaToken(): number {
