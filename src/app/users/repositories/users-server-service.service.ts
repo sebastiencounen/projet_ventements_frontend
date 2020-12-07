@@ -43,7 +43,12 @@ export class UsersServerServiceService implements UsersRepository {
   }
 
   getUserIdViaToken(): number {
-    const token = localStorage.getItem('token');
+    let token;
+    if (localStorage.getItem('token')) {
+      token = localStorage.getItem('token');
+    } else {
+      return null;
+    }
 
     const jwtPayload = token.split('.')[1];
     const decodedJwtPayload = JSON.parse(window.atob(jwtPayload));
