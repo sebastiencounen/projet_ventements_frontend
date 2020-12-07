@@ -8,6 +8,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './users/auth/auth.interceptor';
 import { HeaderComponent } from './common/components/header/header.component';
+import {CategoriesModule} from './categories/categories.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HeaderComponent } from './common/components/header/header.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    UsersModule
+    UsersModule,
+    CategoriesModule
   ],
   providers: [
     {
