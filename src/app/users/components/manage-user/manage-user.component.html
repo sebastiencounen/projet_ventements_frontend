@@ -3,31 +3,7 @@
     <div class="container has-text-centered">
       <div class="columns is-centered">
         <div class="column is-5 is-4-desktop">
-          <h1 class="title is-centered">Informations de l'utilisateur</h1>
-          <div class="has-text-left ml-4">
-            <ul *ngIf="user">
-              <li><span class="has-text-weight-bold">Id utilisateur:</span> {{ user.id }}</li>
-              <li><span class="has-text-weight-bold">Prénom:</span> {{ user.firstname }}</li>
-              <li><span class="has-text-weight-bold">Nom:</span> {{ user.lastname }}</li>
-              <li><span class="has-text-weight-bold">Adresse mail:</span> {{ user.email }}</li>
-              <li><span class="has-text-weight-bold">Date de naissance:</span> {{ user.birthdate | date: 'dd/MM/yyyy' }}
-              </li>
-              <li class="block"><span class="has-text-weight-bold">Sexe:</span> {{ user.gender }}</li>
-              <li>
-                <span *ngIf="!user.userAddress" class="has-text-weight-bold">Aucun adresse enregistrée</span>
-                <div *ngIf="user.userAddress">
-                  <p class="has-text-weight-bold">Adresse:</p>
-                  <ul>
-                    <li><span class="has-text-weight-bold">Id Adresse:</span> {{ user.userAddress.id }}</li>
-                    <li><span class="has-text-weight-bold">Rue:</span> {{ user.userAddress.street }}</li>
-                    <li><span class="has-text-weight-bold">Numéro:</span> {{ user.userAddress.homeNumber }}</li>
-                    <li><span class="has-text-weight-bold">Ville:</span> {{ user.userAddress.city }}</li>
-                    <li><span class="has-text-weight-bold">Code postal:</span> {{ user.userAddress.zip }}</li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <app-user-information [user]="user"></app-user-information>
         </div>
       </div>
     </div>
