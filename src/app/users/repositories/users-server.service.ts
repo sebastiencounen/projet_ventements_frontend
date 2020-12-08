@@ -42,41 +42,4 @@ export class UsersServerService implements UsersRepository {
   registerAddress(userId: number, address: Address): Observable<Address> {
     return this.httpClient.post<Address>(UsersServerService.URL + '/' + userId + '/address', address);
   }
-
-  getUserIdViaToken(): number {
-    let token;
-    if (localStorage.getItem('token')) {
-      token = localStorage.getItem('token');
-    } else {
-      return null;
-    }
-
-    const jwtPayload = token.split('.')[1];
-    const decodedJwtPayload = JSON.parse(window.atob(jwtPayload));
-
-    return decodedJwtPayload.id;
-  }
-
-  isAuthenticated(): Promise<boolean> {
-    const userId = this.getUserIdViaToken();
-
-    return new Promise((resolve, reject) => {
-      if (userId) {
-        this.getById(userId)
-          .subscribe(user => {
-            if (user) {
-              resolve(true);
-            } else {
-              resolve(false);
-            }
-          }, err => reject(false));
-      } else {
-        resolve(false);
-      }
-    });
-  }
-
-  logOut(): void {
-    localStorage.removeItem('token');
-  }
 }
