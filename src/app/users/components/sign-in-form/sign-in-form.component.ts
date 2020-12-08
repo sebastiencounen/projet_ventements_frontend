@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UsersServerServiceService} from '../../repositories/users-server-service.service';
-import {catchError} from 'rxjs/operators';
-import {Users} from '../../types/user';
 import {Router} from '@angular/router';
+import {EventBusService} from '../../../common/event-bus/event-bus.service';
+import {EventData} from '../../../common/event-bus/event-data';
+import {Events} from '../../../common/event-bus/events.enum';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -17,7 +18,8 @@ export class SignInFormComponent implements OnInit {
     passwordUser: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private usersService: UsersServerServiceService, private router: Router) { }
+  constructor(private fb: FormBuilder, private usersService: UsersServerServiceService,
+              private router: Router, private eventBus: EventBusService) {}
 
   ngOnInit(): void {
   }
@@ -25,9 +27,8 @@ export class SignInFormComponent implements OnInit {
   submit(): void {
     this.usersService.authenticate(this.signInFrom.value)
       .subscribe(user => {
-        console.log(user);
         this.router.navigate(['/users']);
-        // this.router.navigate(['/']);
+        this.eventBus.next(new EventData(Events.USER_CONNECTED, user));
       });
   }
 }
