@@ -14,7 +14,10 @@
       </span>
       <div *ngIf="user.userAddress">
         <p class="has-text-weight-bold">Adresse:</p>
-        <a class="mb-2 is-inline-block" (click)="modifyAddress()">Modifier</a>
+        <a class="mb-2 is-inline-block" (click)="modifyAddress()">
+          <span *ngIf="!updateAddress">Modifier</span>
+          <span *ngIf="updateAddress">Annuler</span>
+        </a>
         <ul *ngIf="!updateAddress">
           <li><span class="has-text-weight-bold">Id Adresse:</span> {{ user.userAddress.id }}</li>
           <li><span class="has-text-weight-bold">Rue:</span> {{ user.userAddress.street }}</li>
