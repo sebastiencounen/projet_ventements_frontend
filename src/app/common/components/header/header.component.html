@@ -45,9 +45,14 @@
         </div>
       </div>
       <div class="navbar-item" *ngIf="isAuth">
-        <a class="button is-light" routerLink="/users">
-          <i class="fas fa-user"></i>
-        </a>
+        <div class="buttons">
+          <a class="button is-light" alt="Button informations utilisateur" routerLink="/users">
+            <i class="fas fa-user"></i>
+          </a>
+          <a class="button is-light" alt="Bouton de déconnection">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
