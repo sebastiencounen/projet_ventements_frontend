@@ -4,7 +4,7 @@ import {ManageItemsComponent} from './components/manage-items/manage-items.compo
 import {ListItemsComponent} from './components/list-items/list-items.component';
 
 const routes: Routes = [
-  { path: 'categories/:idCategory/subcategories/:idSubcategory/items', component: ManageItemsComponent }
+  { path: 'category/:idSubcategory/items', component: ManageItemsComponent }
 ];
 
 @NgModule({
