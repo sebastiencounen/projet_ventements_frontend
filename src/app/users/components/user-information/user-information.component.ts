@@ -1,6 +1,7 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {User} from '../../types/user';
-import {UsersServerServiceService} from '../../repositories/users-server-service.service';
+import {UsersServerService} from '../../repositories/users-server.service';
+import {Address} from '../../types/address';
 
 @Component({
   selector: 'app-user-information',
@@ -9,8 +10,13 @@ import {UsersServerServiceService} from '../../repositories/users-server-service
 })
 export class UserInformationComponent implements OnInit, OnChanges {
 
+  @Output()
+  addressChange: EventEmitter<Address> = new EventEmitter<Address>();
+
   @Input()
   user: User;
+
+  updateAddress: boolean = false;
 
   constructor() {}
 
@@ -21,5 +27,14 @@ export class UserInformationComponent implements OnInit, OnChanges {
     if (changes['user'].currentValue) {
       this.user = changes['user'].currentValue;
     }
+  }
+
+  submitUpdatedAddress(address: Address) {
+    this.addressChange.emit(address);
+    this.updateAddress = false;
+  }
+
+  modifyAddress() {
+    this.updateAddress = !this.updateAddress;
   }
 }

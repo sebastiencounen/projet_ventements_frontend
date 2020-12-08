@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UsersServerServiceService} from '../../../users/repositories/users-server-service.service';
+import {UsersServerService} from '../../../users/repositories/users-server.service';
 import {EventBusService} from '../../event-bus/event-bus.service';
 import {Events} from '../../event-bus/events.enum';
 import {Router} from '@angular/router';
@@ -12,8 +12,8 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
   isAuth: boolean;
 
-  constructor(private usersService: UsersServerServiceService, private eventBus: EventBusService,
-                private router: Router) {}
+  constructor(private usersService: UsersServerService, private eventBus: EventBusService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.usersService.isAuthenticated()

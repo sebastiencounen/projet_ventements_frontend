@@ -10,7 +10,7 @@ import {Address} from '../types/address';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersServerServiceService implements UsersRepository {
+export class UsersServerService implements UsersRepository {
 
   private static readonly URL: string = environment.serverAddress + '/users';
 
@@ -18,29 +18,29 @@ export class UsersServerServiceService implements UsersRepository {
   }
 
   authenticate(user: User): Observable<User> {
-    return this.httpClient.post<User>(UsersServerServiceService.URL + '/authenticate', user)
+    return this.httpClient.post<User>(UsersServerService.URL + '/authenticate', user)
       .pipe(
         tap(user => localStorage.setItem('token', user.token))
       );
   }
 
   query(): Observable<Users> {
-    return this.httpClient.get<Users>(UsersServerServiceService.URL);
+    return this.httpClient.get<Users>(UsersServerService.URL);
   }
 
   post(user: User): Observable<User> {
-    return this.httpClient.post<User>(UsersServerServiceService.URL, user)
+    return this.httpClient.post<User>(UsersServerService.URL, user)
       .pipe(
         tap(user => localStorage.setItem('token', user.token))
       );
   }
 
   getById(id: number): Observable<User> {
-    return this.httpClient.get<User>(UsersServerServiceService.URL + '/' + id);
+    return this.httpClient.get<User>(UsersServerService.URL + '/' + id);
   }
 
   registerAddress(userId: number, address: Address): Observable<Address> {
-    return this.httpClient.post<Address>(UsersServerServiceService.URL + '/' + userId + '/address', address);
+    return this.httpClient.post<Address>(UsersServerService.URL + '/' + userId + '/address', address);
   }
 
   getUserIdViaToken(): number {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../types/user';
-import {UsersServerServiceService} from '../../repositories/users-server-service.service';
+import {UsersServerService} from '../../repositories/users-server.service';
 import {Address} from '../../types/address';
 
 @Component({
@@ -12,7 +12,7 @@ export class ManageUserComponent implements OnInit {
 
   user: User = { email: '', userAddress: null };
 
-  constructor(private usersService: UsersServerServiceService) {}
+  constructor(private usersService: UsersServerService) {}
 
   ngOnInit(): void {
     const userId: number = this.usersService.getUserIdViaToken();
