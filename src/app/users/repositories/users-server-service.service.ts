@@ -75,4 +75,8 @@ export class UsersServerServiceService implements UsersRepository {
       }
     });
   }
+
+  logOut(): void {
+    localStorage.removeItem('token');
+  }
 }

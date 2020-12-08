@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UsersServerServiceService} from '../../../users/repositories/users-server-service.service';
 import {EventBusService} from '../../event-bus/event-bus.service';
 import {Events} from '../../event-bus/events.enum';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,8 @@ import {Events} from '../../event-bus/events.enum';
 export class HeaderComponent implements OnInit {
   isAuth: boolean;
 
-  constructor(private usersService: UsersServerServiceService, private eventBus: EventBusService) {}
+  constructor(private usersService: UsersServerServiceService, private eventBus: EventBusService,
+                private router: Router) {}
 
   ngOnInit(): void {
     this.usersService.isAuthenticated()
@@ -24,4 +26,9 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  logOut() {
+    this.usersService.logOut();
+    this.isAuth = false;
+    this.router.navigate(["/"]);
+  }
 }
