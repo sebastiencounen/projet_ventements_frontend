@@ -19,4 +19,8 @@ export class ItemsServerService implements ItemsRepository {
       ItemsServerService.URL + '/categories/' + idCategory + '/items'
     );
   }
+
+  getItemById(id: number): Observable<Item> {
+    return this.httpClient.get<Item>(ItemsServerService.URL + '/items/' + id);
+  }
 }

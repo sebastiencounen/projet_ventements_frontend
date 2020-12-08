@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns is-left">
       <div class="column is-2" *ngFor="let item of items">
-        <a routerLink="">
+        <a [routerLink]="['/item', item.id]">
           <div class="card">
             <div class="card-image">
               <figure class="image">
@@ -19,7 +19,9 @@
 
               <div class="columns is-flex-direction-row is-justify-content-space-between">
                 <div class="title is-5 my-1">{{ item.price }}€</div>
-                <div class="title is-5 my-1">o</div>
+                <div class="title is-5 my-1" title="Ajouter à la wishlist">
+                  <i class="far fa-heart"></i>
+                </div>
               </div>
             </div>
           </div>

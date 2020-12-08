@@ -1,6 +1,8 @@
 import {Observable} from 'rxjs';
-import {Items} from '../types/item';
+import {Item, Items} from '../types/item';
 
 export interface ItemsRepository {
   getItemsByCategoryId(idCategory: number): Observable<Items>;
+
+  getItemById(id: number): Observable<Item>;
 }
