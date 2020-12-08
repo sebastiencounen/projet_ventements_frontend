@@ -9,6 +9,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './users/auth/auth.interceptor';
 import { HeaderComponent } from './common/components/header/header.component';
 import {CategoriesModule} from './categories/categories.module';
+import {BagModule} from './bag/bag.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {CategoriesModule} from './categories/categories.module';
     ReactiveFormsModule,
     HttpClientModule,
     UsersModule,
-    CategoriesModule
+    CategoriesModule,
+    BagModule
   ],
   providers: [
     {
