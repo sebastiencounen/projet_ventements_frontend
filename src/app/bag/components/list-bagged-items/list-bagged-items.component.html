@@ -1,1 +1,41 @@
-<p>list-bagged-items works!</p>
+<section class="section">
+  <!--
+    <ul *ngFor="let item of items">
+      <li>{{item.id}}: {{item.bagItem.label}}</li>
+    </ul>
+  -->
+  <div class="is-flex-direction-row">
+    <div *ngFor="let item of items" class="card mb-2 p-6">
+      <div class="columns">
+        <div class="column is-2">
+          <figure class="image is-inline-block is-64x64">
+            <img [src]="item.bagItem.imageItem" alt="">
+          </figure>
+        </div>
+        <div class="column is-flex-grow-1">
+          <div class="card-content">
+            <h1 class="title is-4">{{item.bagItem.label}}</h1>
+            <h2 class="subtitle">Ajouté le {{item.addedAt | date: 'dd/MM/yyyy HH:mm'}}</h2>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card-content">
+            <h1 class="title is-5">{{item.bagItem.price}}€</h1>
+            <h2 class="subtitle">x {{item.quantity}}</h2>
+          </div>
+        </div>
+      </div>
+      <!--
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-64x64 is-inline-block">
+                    <img [src]="item.bagItem.imageItem" alt="">
+                  </figure>
+                </div>
+              </div>
+            </div>
+      -->
+    </div>
+  </div>
+</section>

@@ -1,1 +1,5 @@
-<p>manage-bag works!</p>
+<section class="section">
+  <h1 class="title is-2">Panier</h1>
+  <h1 class="title is-4">Prix total: {{bag.totalPrice}}€</h1>
+  <app-list-bagged-items [items]="bag.items"></app-list-bagged-items>
+</section>
