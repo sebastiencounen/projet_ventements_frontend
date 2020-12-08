@@ -5,7 +5,7 @@ import { BagRoutingModule } from './bag-routing.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [BagRoutingModule.components],
   imports: [
     CommonModule,
     BagRoutingModule

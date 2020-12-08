@@ -1,59 +1,58 @@
-<div class="container is-fluid">
-  <section class="section">
-    <div class="container has-text-centered">
-      <div class="columns is-centered">
-        <div class="column is-5 is-4-desktop">
-          <h2 class="title">Inscrivez-vous</h2>
-          <form [formGroup]="signUpForm" (ngSubmit)="submit()">
-            <div class="field">
-              <div class="control">
-                <input type="text" class="input" placeholder="Firstname" autofocus formControlName="firstname">
-              </div>
+<section class="section">
+  <div class="container has-text-centered">
+    <div class="columns is-centered">
+      <div class="column is-5 is-4-desktop">
+        <h2 class="title">Inscrivez-vous</h2>
+        <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+          <div class="field">
+            <div class="control">
+              <input type="text" class="input" placeholder="Firstname" autofocus formControlName="firstname">
             </div>
-            <div class="field">
-              <div class="control">
-                <input type="text" class="input" placeholder="Lastname" formControlName="lastname">
-              </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input type="text" class="input" placeholder="Lastname" formControlName="lastname">
             </div>
-            <div class="field">
-              <div class="control">
-                <input type="email" class="input" placeholder="Email" formControlName="email">
-              </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input type="email" class="input" placeholder="Email" formControlName="email">
             </div>
-            <div class="field">
-              <div class="control">
-                <input type="password" class="input" placeholder="Mot de passe" formControlName="userPassword">
-              </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input type="password" class="input" placeholder="Mot de passe" formControlName="userPassword">
             </div>
-            <div class="columns">
-              <div class="column is-6">
-                <div class="field">
-                  <label class="label has-text-left">Date de naissance :</label>
-                  <div class="control">
-                    <input type="date" class="input" placeholder="Date de naissance" formControlName="birthdate">
-                  </div>
-                </div>
-              </div>
-              <div class="column is-6">
-                <div class="field">
-                  <label class="label has-text-left">Vous êtes :</label>
-                  <div class="control">
-                    <div class="select is-fullwidth">
-                      <select formControlName="gender">
-                        <option value="F">Une femme</option>
-                        <option value="M">Un homme</option>
-                      </select>
-                    </div>
-                  </div>
+          </div>
+          <div class="columns">
+            <div class="column is-6">
+              <div class="field">
+                <label class="label has-text-left">Date de naissance :</label>
+                <div class="control">
+                  <input type="date" class="input" placeholder="Date de naissance" formControlName="birthdate">
                 </div>
               </div>
             </div>
-            <div class="field">
-              <button type="submit" class="button is-primary is-fullwidth" [disabled]="signUpForm.invalid">S'inscrire</button>
+            <div class="column is-6">
+              <div class="field">
+                <label class="label has-text-left">Vous êtes :</label>
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select formControlName="gender">
+                      <option value="F">Une femme</option>
+                      <option value="M">Un homme</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
-          </form>
-        </div>
+          </div>
+          <div class="field">
+            <button type="submit" class="button is-primary is-fullwidth" [disabled]="signUpForm.invalid">S'inscrire
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>

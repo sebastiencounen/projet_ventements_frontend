@@ -1,3 +1,6 @@
+import {Observable} from 'rxjs';
+import {Bag} from '../types/bag';
+
 export interface BagRepository {
-  getUserBag()
+  getUserBag(): Observable<Bag>;
 }
