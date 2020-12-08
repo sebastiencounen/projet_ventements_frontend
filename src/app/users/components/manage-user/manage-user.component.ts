@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../types/user';
-import {UsersServerServiceService} from '../../repositories/users-server-service.service';
+import {UsersServerService} from '../../repositories/users-server.service';
 import {Address} from '../../types/address';
+import {ManageUserTokenService} from '../../services/manage-user-token.service';
 
 @Component({
   selector: 'app-manage-user',
@@ -10,12 +11,12 @@ import {Address} from '../../types/address';
 })
 export class ManageUserComponent implements OnInit {
 
-  user: User;
+  user: User = { email: '', userAddress: null };
 
-  constructor(private usersService: UsersServerServiceService) {}
+  constructor(private usersService: UsersServerService, private manageTokenService: ManageUserTokenService) {}
 
   ngOnInit(): void {
-    const userId: number = this.usersService.getUserIdViaToken();
+    const userId: number = this.manageTokenService.getUserIdViaToken();
 
     if (userId) {
       this.usersService.getById(userId)

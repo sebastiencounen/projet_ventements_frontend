@@ -9,16 +9,26 @@
     </li>
     <li class="block"><span class="has-text-weight-bold">Sexe:</span> {{ user.gender }}</li>
     <li>
-      <span *ngIf="!user.userAddress" class="has-text-weight-bold">Aucun adresse enregistrée</span>
+      <span *ngIf="!user.userAddress" class="has-text-weight-bold">
+        Aucun adresse enregistrée
+      </span>
       <div *ngIf="user.userAddress">
         <p class="has-text-weight-bold">Adresse:</p>
-        <ul>
+        <a class="mb-2 is-inline-block" (click)="modifyAddress()">
+          <span *ngIf="!updateAddress">Modifier</span>
+          <span *ngIf="updateAddress">Annuler</span>
+        </a>
+        <ul *ngIf="!updateAddress">
           <li><span class="has-text-weight-bold">Id Adresse:</span> {{ user.userAddress.id }}</li>
           <li><span class="has-text-weight-bold">Rue:</span> {{ user.userAddress.street }}</li>
           <li><span class="has-text-weight-bold">Numéro:</span> {{ user.userAddress.homeNumber }}</li>
           <li><span class="has-text-weight-bold">Ville:</span> {{ user.userAddress.city }}</li>
           <li><span class="has-text-weight-bold">Code postal:</span> {{ user.userAddress.zip }}</li>
         </ul>
+        <div *ngIf="updateAddress">
+          <app-register-address-form [addressToUpdate]="user.userAddress"
+                                     (addressSubmit)="submitUpdatedAddress($event)"></app-register-address-form>
+        </div>
       </div>
     </li>
   </ul>
