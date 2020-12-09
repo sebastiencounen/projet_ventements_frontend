@@ -26,8 +26,7 @@ export class ManageBagComponent implements OnInit {
     this.bagService
       .deleteItemFromBag(element.element.id)
       .subscribe(_ => {
-        const priceToWithdraw = element.element.quantity * element.element.bagItem.price;
-        this.bag.totalPrice -= priceToWithdraw;
+        this.bag.totalPrice -= element.element.bagItem.price;
         this.bag.items.splice(element.index, 1);
         console.log('Deleted successfully');
       }, err => console.log(err));
