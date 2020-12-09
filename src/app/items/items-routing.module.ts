@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ManageItemsComponent} from './components/manage-items/manage-items.component';
 import {ListItemsComponent} from './components/list-items/list-items.component';
+import {ItemDetailsComponent} from './components/item-details/item-details.component';
 
 const routes: Routes = [
-  { path: 'categories/:idCategory/subcategories/:idSubcategory/items', component: ManageItemsComponent }
+  { path: 'category/:idSubcategory/items', component: ManageItemsComponent },
+  { path: 'item/:id', component: ItemDetailsComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,49 @@
+<section class="section">
+    <div class="container">
+      <div class="columns is-flex is-justify-content-space-around">
+        <div class="column is-4">
+          <figure class="image">
+            <img src="{{ item.imageItem }}" alt="{{ item.label }} image">
+          </figure>
+        </div>
+
+        <div class="column is-5">
+          <div class="columns is-flex-direction-column p-2">
+            <div class="column">
+              <h1 class="title has-text-weight-bold">
+                {{ item.label }}
+              </h1>
+            </div>
+            <div class="column">
+              <h2 class="subtitle is-size-3 has-text-weight-semibold">
+                {{ item.price }}€
+              </h2>
+            </div>
+
+            <div class="column mt-6">
+              <div class="columns is-flex-direction-row">
+                <div class="column">
+                  <button class="button is-primary is-medium is-fullwidth">
+                    <i class="fas fa-shopping-bag is-size-4"></i>
+                  </button>
+                </div>
+
+                <div class="column">
+                  <button class="button is-dark is-medium is-fullwidth">
+                    <i class="fas fa-heart is-size-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="column mt-6">
+              <h2 class="subtitle has-text-weight-semibold">Description</h2>
+              <p>{{ item.descriptionItem }}</p>
+            </div>
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+</section>

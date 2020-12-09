@@ -1,8 +1,9 @@
-<section class="section">
+<section class="section" *ngFor="let cat of categories">
   <div class="container">
+    <h1 class="title">{{ cat.title }}</h1>
     <div class="columns is-centered">
-      <div class="column is-3" *ngFor="let c of categories; let i = index;">
-        <a [routerLink]="[i + 1]">
+      <div class="column is-3" *ngFor="let sub of cat.subCategories; let i = index;">
+        <a [routerLink]="['/category', sub.id, 'items']">
           <div class="card">
             <div class="card-image">
               <figure class="image is-4by3">
@@ -10,7 +11,7 @@
               </figure>
             </div>
             <div class="card-content">
-              <h2 class="title">{{ c.title }}</h2>
+              <h2 class="subtitle">{{ sub.title }}</h2>
             </div>
           </div>
         </a>
