@@ -5,7 +5,7 @@ import {ListItemsComponent} from './components/list-items/list-items.component';
 import {ItemDetailsComponent} from './components/item-details/item-details.component';
 
 const routes: Routes = [
-  { path: 'category/:idSubcategory/items', component: ManageItemsComponent },
+  { path: 'category/:id/items', component: ManageItemsComponent },
   { path: 'item/:id', component: ItemDetailsComponent }
 ];
 
@@ -16,6 +16,7 @@ const routes: Routes = [
 export class ItemsRoutingModule {
   static components = [
     ManageItemsComponent,
-    ListItemsComponent
+    ListItemsComponent,
+    ItemDetailsComponent
   ]
 }
