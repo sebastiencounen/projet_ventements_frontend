@@ -8,4 +8,6 @@ export interface BagRepository {
   deleteItemFromBag(baggedItemId: number): Observable<any>;
 
   addItemToBag(userId: number, baggedItem: BaggedItem);
+
+  emptyBag(userId: number);
 }

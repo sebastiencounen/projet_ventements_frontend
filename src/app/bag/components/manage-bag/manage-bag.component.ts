@@ -13,10 +13,10 @@ import {BaggedItem} from '../../types/bagged-item';
 export class ManageBagComponent implements OnInit {
   bag: Bag = { totalPrice: 0, items: [] };
 
-  constructor(private bagService: BagServerService, private manageToke: ManageUserTokenService) {}
+  constructor(private bagService: BagServerService, private manageToken: ManageUserTokenService) {}
 
   ngOnInit(): void {
-    const userId = this.manageToke.getUserIdViaToken();
+    const userId = this.manageToken.getUserIdViaToken();
     this.bagService
       .getUserBag(userId)
       .subscribe(bag => this.bag = bag);
@@ -30,5 +30,17 @@ export class ManageBagComponent implements OnInit {
         this.bag.items.splice(element.index, 1);
         console.log('Deleted successfully');
       }, err => console.log(err));
+  }
+
+  emptyBag() {
+    const userId = this.manageToken.getUserIdViaToken();
+    if (userId) {
+      this.bagService
+        .emptyBag(userId)
+        .subscribe(_ => {
+          this.bag.items.splice(0, this.bag.items.length);
+          this.bag.totalPrice = 0;
+        });
+    }
   }
 }
