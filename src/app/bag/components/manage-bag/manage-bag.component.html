@@ -2,12 +2,12 @@
   <div class="columns is-justify-content-space-between">
     <div class="column is-narrow">
       <h1 class="title is-2">Panier</h1>
-      <h1 class="title is-4">Prix total: {{bag.totalPrice}}€</h1>
+      <h1 class="title is-4">Prix total: {{ bag.totalPrice | number: '1.2' }}€</h1>
     </div>
     <div class="column is-narrow">
       <div class="buttons">
-        <a href="" class="button is-danger">Vider le panier</a>
-        <a href="" class="button is-success">Commander</a>
+        <a class="button is-danger" (click)="emptyBag()">Vider le panier</a>
+        <a class="button is-success">Commander</a>
       </div>
     </div>
   </div>
