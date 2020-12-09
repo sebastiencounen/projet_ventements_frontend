@@ -2,7 +2,7 @@ import {Item} from '../../items/types/item';
 
 export interface BaggedItem {
   id?: number;
-  addedAt: Date;
+  addedAt?: Date;
   quantity: number;
   size: string;
   bagItem: Item;
