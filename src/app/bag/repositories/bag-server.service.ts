@@ -29,4 +29,8 @@ export class BagServerService implements BagRepository {
     return this.httpClient.post<BaggedItem>(
       BagServerService.URL_BAG + '/' + userId + '/bag/' + baggedItem.bagItem.id, baggedItem);
   }
+
+  emptyBag(userId: number) {
+    return this.httpClient.delete(BagServerService.URL_BAG + userId + '/bag/empty');
+  }
 }
