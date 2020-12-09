@@ -8,13 +8,14 @@
       </div>
       <div class="column is-flex-grow-1">
         <div class="card-content">
-          <h1 class="title is-4">{{item.quantity}} x {{item.bagItem.label}}</h1>
-          <h2 class="subtitle">Ajouté le {{item.addedAt | date: 'dd/MM/yyyy HH:mm'}}</h2>
+          <a class="has-text-weight-bold is-size-4" [routerLink]="['/item', item.bagItem.id]">{{item.quantity}}
+            x {{item.bagItem.label}}</a>
+          <h2>Ajouté le {{item.addedAt | date: 'dd/MM/yyyy HH:mm'}}</h2>
         </div>
       </div>
       <div class="column is-3">
         <div class="card-content">
-          <h1 class="title is-5">{{item.bagItem.price}}€</h1>
+          <h1 class="title is-4 has-text-weight-bold">{{item.bagItem.price}}€</h1>
         </div>
       </div>
       <div class="column is-1 is-align-items-center">
