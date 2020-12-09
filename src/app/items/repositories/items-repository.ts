@@ -5,4 +5,6 @@ export interface ItemsRepository {
   getItemsByCategoryId(idCategory: number): Observable<Items>;
 
   getItemById(id: number): Observable<Item>;
+
+  // getReviews(idItem: number): Observable<any>;
 }
