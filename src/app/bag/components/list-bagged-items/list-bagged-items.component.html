@@ -8,8 +8,10 @@
       </div>
       <div class="column is-flex-grow-1">
         <div class="card-content">
-          <a class="has-text-weight-bold is-size-4" [routerLink]="['/item', item.bagItem.id]">{{item.quantity}}
-            x {{item.bagItem.label}}</a>
+          <a class="has-text-weight-bold is-size-4" [routerLink]="['/item', item.bagItem.id]">
+            {{item.quantity}} x {{item.bagItem.label}}
+          </a>
+          <h2>Taille: {{item.size}}</h2>
           <h2>Ajouté le {{item.addedAt | date: 'dd/MM/yyyy HH:mm'}}</h2>
         </div>
       </div>
@@ -19,7 +21,9 @@
         </div>
       </div>
       <div class="column is-1 is-align-items-center">
-        <div class="card-content"><a class="delete" (click)="deleteBaggedItem({element: item, index: i})"></a></div>
+        <div class="card-content">
+          <a class="delete" (click)="deleteBaggedItem({element: item, index: i})"></a>
+        </div>
       </div>
     </div>
   </div>
