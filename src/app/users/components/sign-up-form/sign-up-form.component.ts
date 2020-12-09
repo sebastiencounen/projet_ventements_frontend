@@ -32,7 +32,7 @@ export class SignUpFormComponent implements OnInit {
     this.usersService.post(this.signUpForm.value)
       .subscribe(
         user => {
-          this.router.navigate(['/users'])
+          this.router.navigate(['/'])
           this.eventBus.next(new EventData(Events.USER_CONNECTED, user));
         },
         err => console.log(err.error.message)

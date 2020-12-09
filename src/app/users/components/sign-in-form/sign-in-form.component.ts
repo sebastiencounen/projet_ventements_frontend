@@ -27,7 +27,7 @@ export class SignInFormComponent implements OnInit {
   submit(): void {
     this.usersService.authenticate(this.signInFrom.value)
       .subscribe(user => {
-        this.router.navigate(['/users']);
+        this.router.navigate(['/']);
         this.eventBus.next(new EventData(Events.USER_CONNECTED, user));
       });
   }
