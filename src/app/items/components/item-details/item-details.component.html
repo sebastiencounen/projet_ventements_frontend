@@ -1,12 +1,14 @@
 <section class="section">
     <div class="container pt-6">
       <div class="columns is-flex is-justify-content-space-around">
+        <!--Image item-->
         <div class="column is-4">
           <figure class="image">
             <img src="{{ item.imageItem }}" alt="{{ item.label }} image">
           </figure>
         </div>
 
+        <!--Item data-->
         <div class="column is-5">
           <div class="columns is-flex-direction-column p-2">
             <div class="column">
@@ -20,6 +22,7 @@
               </h2>
             </div>
 
+            <!--Bag & wishlist buttons-->
             <div class="column mt-6">
               <div class="columns is-flex-direction-row">
                 <div class="column">
@@ -36,11 +39,36 @@
               </div>
             </div>
 
+            <!--Description-->
             <div class="column mt-6">
               <h2 class="subtitle has-text-weight-semibold">Description</h2>
               <p>{{ item.descriptionItem }}</p>
             </div>
 
+            <!--Reviews-->
+            <div class="column">
+              <div class="columns is-flex-direction-column">
+                <div class="column">
+                  <h2 class="subtitle has-text-weight-semibold">Reviews</h2>
+                </div>
+                <div class="column" *ngFor="let r of reviews">
+                  <div class="columns">
+                    <div class="column">
+                      <h2 class="title is-6 has-text-weight-bold is-italic">
+                        {{ r.title }}
+                      </h2>
+                    </div>
+                  </div>
+                  <p>{{ r.descriptionReview }}</p>
+                  <div class="is-flex is-justify-content-flex-end">
+                    <p class="is-right has-text-grey-light is-italic">
+                      {{ r.reviewer.firstname }} {{ r.reviewer.lastname }}
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
           </div>
         </div>
     </div>

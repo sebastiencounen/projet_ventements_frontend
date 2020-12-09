@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Item, Items} from '../types/item';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {Reviews} from '../types/review';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,11 @@ export class ItemsServerService implements ItemsRepository {
 
   getItemById(id: number): Observable<Item> {
     return this.httpClient.get<Item>(ItemsServerService.URL + '/items/' + id);
+  }
+
+  getReviews(idItem: number): Observable<Reviews> {
+    return this.httpClient.get<Reviews>(
+      ItemsServerService.URL + '/items/' + idItem + '/reviews'
+    );
   }
 }

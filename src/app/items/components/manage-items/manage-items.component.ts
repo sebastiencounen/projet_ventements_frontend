@@ -22,8 +22,8 @@ export class ManageItemsComponent implements OnInit {
 
   private initItems() {
     this.route.paramMap.pipe(
-      filter(params => +params.get('idSubcategory') !== 0),
-      map(params => +params.get('idSubcategory')),
+      filter(params => +params.get('id') !== 0),
+      map(params => +params.get('id')),
       switchMap(id => this.itemsService.getItemsByCategoryId(id))
     ).subscribe(items => this.items = items);
   }
