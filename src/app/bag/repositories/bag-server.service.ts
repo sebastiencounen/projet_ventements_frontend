@@ -18,4 +18,8 @@ export class BagServerService implements BagRepository {
   getUserBag(userId: number): Observable<Bag> {
     return this.httpClient.get<Bag>(BagServerService.URL_BAG + '/' + userId + '/bag');
   }
+
+  deleteItemFromBag(baggedItemId: number): Observable<any> {
+    return this.httpClient.delete(BagServerService.URL_BAGGED_ITEM + '/' + baggedItemId);
+  }
 }
