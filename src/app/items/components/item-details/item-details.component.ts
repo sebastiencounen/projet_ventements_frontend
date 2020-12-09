@@ -3,6 +3,7 @@ import {Item} from '../../types/item';
 import {ItemsServerService} from '../../repositories/items-server.service';
 import {ActivatedRoute} from '@angular/router';
 import {filter, map, switchMap} from 'rxjs/operators';
+import {Review} from '../../types/review';
 
 @Component({
   selector: 'app-item-details',

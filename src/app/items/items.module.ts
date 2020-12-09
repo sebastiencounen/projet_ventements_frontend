@@ -8,7 +8,7 @@ import { ItemDetailsComponent } from './components/item-details/item-details.com
 
 
 @NgModule({
-    declarations: [ItemsRoutingModule.components, ItemDetailsComponent],
+    declarations: [ItemsRoutingModule.components],
     exports: [
         ManageItemsComponent
     ],

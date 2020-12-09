@@ -16,6 +16,7 @@ const routes: Routes = [
 export class ItemsRoutingModule {
   static components = [
     ManageItemsComponent,
-    ListItemsComponent
+    ListItemsComponent,
+    ItemDetailsComponent
   ]
 }
