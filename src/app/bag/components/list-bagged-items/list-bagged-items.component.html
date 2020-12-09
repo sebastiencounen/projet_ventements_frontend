@@ -1,5 +1,5 @@
 <div class="is-flex-direction-row">
-  <div *ngFor="let item of items" class="card mb-2 p-6">
+  <div *ngFor="let item of items; let i = index;" class="card mb-2 p-6">
     <div class="columns is-vcentered">
       <div class="column is-2">
         <figure class="image is-inline-block is-64x64">
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="column is-1 is-align-items-center">
-        <div class="card-content"><a class="delete"></a></div>
+        <div class="card-content"><a class="delete" (click)="deleteBaggedItem({element: item, index: i})"></a></div>
       </div>
     </div>
   </div>

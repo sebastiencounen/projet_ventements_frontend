@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Bag} from '../../types/bag';
 import {BagServerService} from '../../repositories/bag-server.service';
 import {ManageUserTokenService} from '../../../users/services/manage-user-token.service';
+import {ElementToDelete} from '../../../common/types/element-to-delete';
+import {BaggedItem} from '../../types/bagged-item';
 
 @Component({
   selector: 'app-manage-bag',
@@ -18,5 +20,15 @@ export class ManageBagComponent implements OnInit {
     this.bagService
       .getUserBag(userId)
       .subscribe(bag => this.bag = bag);
+  }
+
+  deleteBaggedItem(element: ElementToDelete<BaggedItem>) {
+    this.bagService
+      .deleteItemFromBag(element.element.id)
+      .subscribe(_ => {
+        this.bag.items.splice(element.index, 1);
+        // TODO Baisser prix total du panier
+        console.log('Deleted successfully');
+      }, err => console.log(err));
   }
 }

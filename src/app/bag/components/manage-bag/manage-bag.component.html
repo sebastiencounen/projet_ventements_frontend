@@ -11,5 +11,5 @@
       </div>
     </div>
   </div>
-  <app-list-bagged-items [items]="bag.items"></app-list-bagged-items>
+  <app-list-bagged-items [items]="bag.items" (baggedItemDeleted)="deleteBaggedItem($event)"></app-list-bagged-items>
 </section>
