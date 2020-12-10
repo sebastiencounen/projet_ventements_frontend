@@ -5,7 +5,7 @@ import { WishlistRoutingModule } from './wishlist-routing.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [WishlistRoutingModule.components],
   imports: [
     CommonModule,
     WishlistRoutingModule
