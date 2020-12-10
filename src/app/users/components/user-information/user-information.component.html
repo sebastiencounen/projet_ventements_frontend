@@ -12,6 +12,9 @@
       <span *ngIf="!user.userAddress" class="has-text-weight-bold">
         Aucun adresse enregistrée
       </span>
+      <div class="mt-6" *ngIf="!user.userAddress">
+        <app-register-address-form (addressSubmit)="submitAddress($event)"></app-register-address-form>
+      </div>
       <div *ngIf="user.userAddress">
         <p class="has-text-weight-bold">Adresse:</p>
         <a class="mb-2 is-inline-block" (click)="modifyAddress()">
@@ -27,7 +30,7 @@
         </ul>
         <div *ngIf="updateAddress">
           <app-register-address-form [addressToUpdate]="user.userAddress"
-                                     (addressSubmit)="submitUpdatedAddress($event)"></app-register-address-form>
+                                     (addressSubmit)="submitAddress($event)"></app-register-address-form>
         </div>
       </div>
     </li>
