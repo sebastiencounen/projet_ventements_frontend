@@ -4,16 +4,6 @@
     <div class="columns is-centered">
       <div class="column" *ngFor="let sub of cat.subCategories">
         <a [routerLink]="['/category', sub.id, 'items']">
-<!--          <div class="card">-->
-<!--            <div class="card-image">-->
-<!--              <figure class="image is-4by3">-->
-<!--                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">-->
-<!--              </figure>-->
-<!--            </div>-->
-<!--            <div class="card-content has-background-link is-4by3">-->
-<!--              <h2 class="subtitle has-text-white">{{ sub.title }}</h2>-->
-<!--            </div>-->
-<!--          </div>-->
           <div class="card has-background-link">
             <div class="card-content p-5">
               <h2 class="subtitle has-text-centered has-text-white">{{ sub.title }}</h2>
