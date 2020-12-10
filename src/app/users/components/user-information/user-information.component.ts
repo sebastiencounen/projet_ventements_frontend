@@ -28,7 +28,7 @@ export class UserInformationComponent implements OnInit, OnChanges {
     }
   }
 
-  submitUpdatedAddress(address: Address) {
+  submitAddress(address: Address) {
     this.addressChange.emit(address);
     this.updateAddress = false;
   }
