@@ -4,7 +4,7 @@ import {ManageWishlistComponent} from './components/manage-wishlist/manage-wishl
 import {ListWishlistComponent} from './components/list-wishlist/list-wishlist.component';
 
 const routes: Routes = [
-  { path: '/wishlist', component: ManageWishlistComponent }
+  { path: 'wishlist', component: ManageWishlistComponent }
 ];
 
 @NgModule({
