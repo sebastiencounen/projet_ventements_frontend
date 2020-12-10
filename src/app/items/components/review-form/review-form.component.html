@@ -12,7 +12,7 @@
           <input class="input" type="text" placeholder="Titre" formControlName="title">
         </div>
         <!--Stars input-->
-        <div class="stars-input column is-1 is-flex is-flex-direction-column is-align-items-center over" *ngFor="let star of stars">
+        <div class="column is-1 is-flex is-flex-direction-column is-align-items-center" *ngFor="let star of stars">
           <div (click)="onClickStar(star)">
             <i class="far fa-star has-text-primary"></i>
           </div>
