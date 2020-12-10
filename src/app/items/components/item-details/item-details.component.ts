@@ -7,6 +7,7 @@ import {Reviews} from '../../types/review';
 import {BaggedItem} from '../../../bag/types/bagged-item';
 import {BagServerService} from '../../../bag/repositories/bag-server.service';
 import {ManageUserTokenService} from '../../../users/services/manage-user-token.service';
+import {isCombinedModifierFlagSet} from 'tslint';
 
 @Component({
   selector: 'app-item-details',
@@ -16,9 +17,11 @@ import {ManageUserTokenService} from '../../../users/services/manage-user-token.
 export class ItemDetailsComponent implements OnInit {
 
   item: Item = {label: ""};
-  reviews: Reviews;
+  reviews: Reviews = [];
 
   baggedItem: BaggedItem = {bagItem: this.item, quantity: 1, size: ''};
+
+  isModalVisible: boolean = false;
 
   constructor(private itemService: ItemsServerService,
               private bagService: BagServerService,
@@ -65,9 +68,16 @@ export class ItemDetailsComponent implements OnInit {
           return this.bagService
             .addItemToBag(userId, this.baggedItem)
             .subscribe(
-              baggedItem => console.log(baggedItem),
+              baggedItem => {
+                this.baggedItem = {bagItem: this.item, quantity: 1, size: ''};
+                this.isModalVisible = true;
+              },
               err => console.log(err)
             );
         });
     }
+
+  closeModal() {
+    this.isModalVisible = false;
+  }
 }
