@@ -26,6 +26,6 @@ export class WishlistServerService implements WishlistRepository {
   }
 
   getUserWishlist(userId: number): Observable<Wishlists> {
-    return this.httpClient.get<Wishlists>(WishlistServerService.URL_USER + '/' + userId + 'wishlist');
+    return this.httpClient.get<Wishlists>(WishlistServerService.URL_USER + '/' + userId + '/wishlist');
   }
 }
