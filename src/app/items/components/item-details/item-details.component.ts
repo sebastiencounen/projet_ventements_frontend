@@ -14,6 +14,7 @@ export class ItemDetailsComponent implements OnInit {
 
   item: Item = { label: "" };
   reviews: Reviews;
+  stars: number[] = [1,2,3,4,5];
 
   constructor(private itemService: ItemsServerService,
               private route: ActivatedRoute) { }
@@ -37,5 +38,21 @@ export class ItemDetailsComponent implements OnInit {
       map(params => +params.get('id')),
       switchMap(id => this.itemService.getReviews(id))
     ).subscribe(reviews => this.reviews = reviews);
+  }
+
+  onClickStar(nbStars: number) {
+    const stars = document.querySelectorAll('.stars-input > div > i');
+    const radios = document.querySelectorAll('input[type="radio"]');
+
+    radios[nbStars - 1].setAttribute('checked', 'checked');
+
+    stars.forEach((s, i) => {
+      if(i < nbStars) {
+        stars[i].classList.replace('far', 'fas');
+      }
+      else {
+        s.classList.replace('fas', 'far');
+      }
+    });
   }
 }
