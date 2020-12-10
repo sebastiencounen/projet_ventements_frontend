@@ -45,7 +45,7 @@
       <button class="delete" aria-label="close" (click)="cancelModif()"></button>
     </header>
     <section class="modal-card-body">
-      <input type="number" class="input" placeholder="Nouvelle quantité" [(ngModel)]="itemToModify.quantity">
+      <input type="number" min="0" class="input" placeholder="Nouvelle quantité" [(ngModel)]="itemToModify.quantity">
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success" (click)="updateQuantity()">Sauvegarder</button>

@@ -33,7 +33,6 @@ export class ListBaggedItemsComponent implements OnInit {
 
   modifyBaggedItem(item: BaggedItem) {
     this.itemToModify = { ...item };
-    // this.itemToModify = item;
     this.isModalVisible = true;
   }
 
@@ -42,8 +41,15 @@ export class ListBaggedItemsComponent implements OnInit {
   }
 
   updateQuantity() {
-    // console.log(this.itemToModify);
-    this.baggedItemModified.next(this.itemToModify);
+    if (this.itemToModify.quantity > 0) {
+      this.baggedItemModified.next(this.itemToModify);
+    } else {
+      const index = this.items.findIndex(item => item.id === this.itemToModify.id);
+      if (index >= 0) {
+        this.baggedItemDeleted.next({ element: this.itemToModify, index: index });
+      }
+    }
+
     this.isModalVisible = false;
   }
 }
