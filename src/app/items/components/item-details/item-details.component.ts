@@ -3,11 +3,11 @@ import {Item} from '../../types/item';
 import {ItemsServerService} from '../../repositories/items-server.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {filter, map, switchMap} from 'rxjs/operators';
-import {Reviews} from '../../types/review';
+import {Review, Reviews} from '../../types/review';
 import {BaggedItem} from '../../../bag/types/bagged-item';
 import {BagServerService} from '../../../bag/repositories/bag-server.service';
 import {ManageUserTokenService} from '../../../users/services/manage-user-token.service';
-import {isCombinedModifierFlagSet} from 'tslint';
+import {ReviewsServerService} from '../../repositories/reviews-server.service';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -28,6 +28,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   constructor(private itemService: ItemsServerService,
               private bagService: BagServerService,
+              private reviewService: ReviewsServerService,
               private manageToken: ManageUserTokenService,
               private router: Router,
               private route: ActivatedRoute) {
@@ -75,6 +76,28 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
                 this.baggedItem = {bagItem: this.item, quantity: 1, size: ''};
                 this.isModalVisible = true;
               },
+              err => console.log(err)
+            );
+        });
+    }
+
+    addReview(review: Review) {
+      this.manageToken
+        .isAuthenticated()
+        .subscribe(response => {
+          if (!response) {
+            this.router.navigate(['users', 'sign-in']);
+            return;
+          }
+
+          const userId = this.manageToken.getUserIdViaToken();
+
+          console.log(review);
+
+          return this.reviewService
+            .addReview(userId, this.item.id, review)
+            .subscribe(
+              review => this.reviews.push(review),
               err => console.log(err)
             );
         });

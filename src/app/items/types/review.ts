@@ -6,8 +6,8 @@ export interface Review {
   stars: number;
   title: string;
   descriptionReview?: string;
-  reviewer: User
-  itemReviewed: Item;
+  reviewer?: User
+  itemReviewed?: Item;
 }
 
 export declare type Reviews = Review[];
