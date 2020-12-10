@@ -7,3 +7,5 @@ export interface Wishlist {
   userWishList: User;
   itemWishList: Item;
 }
+
+export declare type Wishlists = Wishlist[];
