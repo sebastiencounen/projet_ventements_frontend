@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Review} from '../../types/review';
 
 @Component({
   selector: 'app-review-form',
@@ -8,12 +9,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ReviewFormComponent implements OnInit {
 
+  @Output() reviewSubmit: EventEmitter<Review> = new EventEmitter<Review>();
+
   form: FormGroup = this.fb.group({
-    title: ['', Validators.required],
     stars: ['', Validators.required],
+    title: ['', Validators.required],
     descriptionReview: ['', Validators.required]
   });
-
+  
   stars: number[] = [1, 2, 3, 4, 5];
 
   constructor(private fb: FormBuilder) { }
@@ -23,7 +26,6 @@ export class ReviewFormComponent implements OnInit {
 
   onClickStar(nbStars: number) {
     const stars = document.querySelectorAll('.stars-input > div > i');
-    const radios = document.querySelectorAll('input[type="radio"]');
 
     this.form.patchValue({ stars: nbStars });
 
@@ -37,6 +39,7 @@ export class ReviewFormComponent implements OnInit {
   }
 
   submit() {
+    this.reviewSubmit.emit(this.form.value);
     console.log(this.form.value);
   }
 }
