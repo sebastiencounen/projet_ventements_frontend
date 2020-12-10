@@ -25,16 +25,16 @@ export class BagServerService implements BagRepository {
     return this.httpClient.delete(BagServerService.URL_BAGGED_ITEM + '/' + baggedItemId);
   }
 
-  addItemToBag(userId: number, baggedItem: BaggedItem) {
+  addItemToBag(userId: number, baggedItem: BaggedItem): Observable<BaggedItem> {
     return this.httpClient.post<BaggedItem>(
       BagServerService.URL_BAG + '/' + userId + '/bag/' + baggedItem.bagItem.id, baggedItem);
   }
 
-  emptyBag(userId: number) {
+  emptyBag(userId: number): Observable<any> {
     return this.httpClient.delete(BagServerService.URL_BAG + '/' + userId + '/bag/empty');
   }
 
-  updateQuantity(baggedItem: BaggedItem) {
+  updateQuantity(baggedItem: BaggedItem): Observable<any> {
     return this.httpClient.put(
       BagServerService.URL_BAGGED_ITEM + '/' + baggedItem.id, { quantity: baggedItem.quantity });
   }

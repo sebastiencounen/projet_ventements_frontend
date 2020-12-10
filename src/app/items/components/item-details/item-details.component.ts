@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Item} from '../../types/item';
 import {ItemsServerService} from '../../repositories/items-server.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -8,13 +8,16 @@ import {BaggedItem} from '../../../bag/types/bagged-item';
 import {BagServerService} from '../../../bag/repositories/bag-server.service';
 import {ManageUserTokenService} from '../../../users/services/manage-user-token.service';
 import {isCombinedModifierFlagSet} from 'tslint';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.scss']
 })
-export class ItemDetailsComponent implements OnInit {
+export class ItemDetailsComponent implements OnInit, OnDestroy {
+
+  isAuthSubscription: Subscription;
 
   item: Item = {label: ""};
   reviews: Reviews = [];
@@ -56,7 +59,7 @@ export class ItemDetailsComponent implements OnInit {
 
   addToBag() {
       if (this.baggedItem.quantity < 1 || !this.baggedItem.size) return;
-      this.manageToken
+      this.isAuthSubscription = this.manageToken
         .isAuthenticated()
         .subscribe(response => {
           if (!response) {
@@ -79,5 +82,11 @@ export class ItemDetailsComponent implements OnInit {
 
   closeModal() {
     this.isModalVisible = false;
+  }
+
+  ngOnDestroy(): void {
+    if (this.isAuthSubscription) {
+      this.isAuthSubscription.unsubscribe();
+    }
   }
 }
