@@ -4,7 +4,7 @@
         <!--Image item-->
         <div class="column is-4">
           <figure class="image">
-            <img src="{{ item.imageItem }}" alt="{{ item.label }} image">
+            <img [src]="item.imageItem" [alt]="item.label + 'image'">
           </figure>
         </div>
 
@@ -31,11 +31,25 @@
               </div>
             </div>
 
-            <!--Bag & wishlist buttons-->
+            <!-- Quantity & Size -->
             <div class="column mt-6">
               <div class="columns is-flex-direction-row">
+                <!-- Quantity -->
                 <div class="column">
-                  <button class="button is-primary is-medium is-fullwidth">
+                  <input type="number" class="input" min="1" placeholder="Quantité" [(ngModel)]="baggedItem.quantity">
+                </div>
+                <!-- Size -->
+                <div class="column">
+                  <input type="text" class="input" placeholder="Taille" [(ngModel)]="baggedItem.size">
+                </div>
+              </div>
+            </div>
+
+            <!--Bag & wishlist buttons-->
+            <div class="column">
+              <div class="columns is-flex-direction-row">
+                <div class="column">
+                  <button class="button is-primary is-medium is-fullwidth" (click)="addToBag()">
                     <i class="fas fa-shopping-bag is-size-4"></i>
                   </button>
                 </div>
