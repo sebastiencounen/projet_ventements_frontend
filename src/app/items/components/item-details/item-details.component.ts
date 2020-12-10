@@ -85,6 +85,8 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.isAuthSubscription.unsubscribe();
+    if (this.isAuthSubscription) {
+      this.isAuthSubscription.unsubscribe();
+    }
   }
 }
