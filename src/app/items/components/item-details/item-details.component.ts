@@ -15,17 +15,18 @@ import {ManageUserTokenService} from '../../../users/services/manage-user-token.
 })
 export class ItemDetailsComponent implements OnInit {
 
-  item: Item = { label: "" };
+  item: Item = {label: ""};
   reviews: Reviews;
-  stars: number[] = [1,2,3,4,5];
+  stars: number[] = [1, 2, 3, 4, 5];
 
-  baggedItem: BaggedItem = { bagItem: this.item, quantity: 1, size: '' };
+  baggedItem: BaggedItem = {bagItem: this.item, quantity: 1, size: ''};
 
   constructor(private itemService: ItemsServerService,
               private bagService: BagServerService,
               private manageToken: ManageUserTokenService,
               private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.getItemById();
@@ -58,31 +59,32 @@ export class ItemDetailsComponent implements OnInit {
     radios[nbStars - 1].setAttribute('checked', 'checked');
 
     stars.forEach((s, i) => {
-      if(i < nbStars) {
+      if (i < nbStars) {
         stars[i].classList.replace('far', 'fas');
-      }
-      else {
+      } else {
         s.classList.replace('fas', 'far');
       }
     });
+  }
+
 
   addToBag() {
-    if (this.baggedItem.quantity < 1) return;
-    this.manageToken
-      .isAuthenticated()
-      .subscribe(response => {
-        if (!response) {
-          this.router.navigate(['users', 'sign-in']);
-          return;
-        }
+      if (this.baggedItem.quantity < 1) return;
+      this.manageToken
+        .isAuthenticated()
+        .subscribe(response => {
+          if (!response) {
+            this.router.navigate(['users', 'sign-in']);
+            return;
+          }
 
-        const userId = this.manageToken.getUserIdViaToken();
-        return this.bagService
-          .addItemToBag(userId, this.baggedItem)
-          .subscribe(
-            baggedItem => console.log(baggedItem),
-            err => console.log(err)
-          );
-      })
-  }
+          const userId = this.manageToken.getUserIdViaToken();
+          return this.bagService
+            .addItemToBag(userId, this.baggedItem)
+            .subscribe(
+              baggedItem => console.log(baggedItem),
+              err => console.log(err)
+            );
+        });
+    }
 }
