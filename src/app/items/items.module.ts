@@ -5,18 +5,20 @@ import { ItemsRoutingModule } from './items-routing.module';
 import { ManageItemsComponent } from './components/manage-items/manage-items.component';
 import { ListItemsComponent } from './components/list-items/list-items.component';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ReviewFormComponent } from './components/review-form/review-form.component';
 
 
 @NgModule({
-    declarations: [ItemsRoutingModule.components],
+    declarations: [ItemsRoutingModule.components, ReviewFormComponent],
     exports: [
         ManageItemsComponent
     ],
     imports: [
         CommonModule,
         ItemsRoutingModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ]
 })
 export class ItemsModule { }
