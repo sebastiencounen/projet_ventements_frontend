@@ -43,7 +43,7 @@
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Modifier la quantité</p>
-      <button class="delete" aria-label="close"></button>
+      <button class="delete" aria-label="close" (click)="cancelModif()"></button>
     </header>
     <section class="modal-card-body">
       <input type="number" class="input" placeholder="Nouvelle quantité" [(ngModel)]="itemToModify.quantity">
