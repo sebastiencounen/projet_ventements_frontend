@@ -17,7 +17,6 @@ export class ItemDetailsComponent implements OnInit {
 
   item: Item = {label: ""};
   reviews: Reviews;
-  stars: number[] = [1, 2, 3, 4, 5];
 
   baggedItem: BaggedItem = {bagItem: this.item, quantity: 1, size: ''};
 
@@ -51,22 +50,6 @@ export class ItemDetailsComponent implements OnInit {
       switchMap(id => this.itemService.getReviews(id))
     ).subscribe(reviews => this.reviews = reviews);
   }
-
-  onClickStar(nbStars: number) {
-    const stars = document.querySelectorAll('.stars-input > div > i');
-    const radios = document.querySelectorAll('input[type="radio"]');
-
-    radios[nbStars - 1].setAttribute('checked', 'checked');
-
-    stars.forEach((s, i) => {
-      if (i < nbStars) {
-        stars[i].classList.replace('far', 'fas');
-      } else {
-        s.classList.replace('fas', 'far');
-      }
-    });
-  }
-
 
   addToBag() {
       if (this.baggedItem.quantity < 1 || !this.baggedItem.size) return;

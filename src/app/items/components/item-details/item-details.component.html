@@ -101,39 +101,8 @@
                   </div>
                 </div>
 
-                <!--Adding a review-->
                 <div class="column">
-                  <h2 class="subtitle has-text-weight-semibold">Ajouter un avis</h2>
-                  <form>
-                    <div class="columns is-flex-direction-column">
-                      <!--Title & stars-->
-                      <div class="column">
-                        <div class="columns is-align-items-center">
-                          <!--Title input-->
-                          <div class="column">
-                            <input class="input is-primary" type="text" placeholder="Titre">
-                          </div>
-                          <!--Stars input-->
-                          <div class="stars-input column is-1 is-flex is-flex-direction-column is-align-items-center over" *ngFor="let star of stars">
-                              <div (click)="onClickStar(star)">
-                                <i class="far fa-star has-text-primary"></i>
-                              </div>
-                              <div class="is-hidden">
-                                <input type="radio" name="radio" [value]="star">
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="column">
-                        <textarea class="textarea is-primary" placeholder="Donnez-nous votre avis..."></textarea>
-                      </div>
-
-                      <div class="column">
-                        <button class="button is-primary is-fullwidth" type="submit">Ajouter</button>
-                      </div>
-                    </div>
-                  </form>
+                  <app-review-form></app-review-form>
                 </div>
               </div>
             </div>
