@@ -23,7 +23,6 @@
       <div class="column is-1 is-align-items-center">
         <div class="columns is-flex is-flex-direction-column">
           <div class="column">
-<!--            <a class="delete" (click)="deleteBaggedItem({element: item, index: i})"></a>-->
             <a class="button is-white is-large has-text-danger" (click)="deleteBaggedItem({element: item, index: i})">
               <i class="far fa-times-circle"></i>
             </a>
@@ -37,7 +36,7 @@
   </div>
 </div>
 
-<!-- TEST MODAL -->
+<!-- MODAL -->
 <div class="modal" [ngClass]="{ 'is-active': isModalVisible }">
   <div class="modal-background"></div>
   <div class="modal-card">
