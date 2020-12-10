@@ -69,7 +69,7 @@ export class ItemDetailsComponent implements OnInit {
 
 
   addToBag() {
-      if (this.baggedItem.quantity < 1) return;
+      if (this.baggedItem.quantity < 1 || !this.baggedItem.size) return;
       this.manageToken
         .isAuthenticated()
         .subscribe(response => {
