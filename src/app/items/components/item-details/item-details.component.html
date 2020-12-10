@@ -82,8 +82,9 @@
                         </h2>
                       </div>
                       <!--Stars-->
-                      <div class="column is-1" *ngFor="let i of [].constructor(r.stars)">
-                        <i class="fas fa-star has-text-primary"></i>
+                      <div class="column is-1" *ngFor="let i of stars">
+                        <i class="fas fa-star has-text-primary" *ngIf="i <= r.stars"></i>
+                        <i class="far fa-star has-text-primary" *ngIf="i > r.stars"></i>
                       </div>
                     </div>
                     <!--Description-->

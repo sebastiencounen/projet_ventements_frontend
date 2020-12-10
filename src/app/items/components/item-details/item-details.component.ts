@@ -22,6 +22,8 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   item: Item = {label: ""};
   reviews: Reviews = [];
 
+  stars: number[] = [1, 2, 3, 4, 5];
+
   baggedItem: BaggedItem = {bagItem: this.item, quantity: 1, size: ''};
 
   isModalVisible: boolean = false;
