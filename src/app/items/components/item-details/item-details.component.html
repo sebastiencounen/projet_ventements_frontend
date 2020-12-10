@@ -108,5 +108,22 @@
         </div>
     </div>
   </div>
-
 </section>
+
+<!-- MODAL -->
+<div class="modal" [ngClass]="{ 'is-active': isModalVisible }">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Article ajouté au panier!</p>
+      <button class="delete" aria-label="close" (click)="closeModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      Voulez-vous continuer vos achat ou vous rendre dans le panier ?
+    </section>
+    <footer class="modal-card-foot">
+      <a class="button is-success" (click)="closeModal()">Continuer mes achats</a>
+      <a class="button is-info" routerLink="/bag">Me rendre au panier</a>
+    </footer>
+  </div>
+</div>
