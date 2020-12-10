@@ -10,4 +10,6 @@ export interface BagRepository {
   addItemToBag(userId: number, baggedItem: BaggedItem);
 
   emptyBag(userId: number);
+
+  updateQuantity(baggedItem: BaggedItem);
 }

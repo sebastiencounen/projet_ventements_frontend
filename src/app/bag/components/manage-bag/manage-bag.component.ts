@@ -11,9 +11,10 @@ import {BaggedItem} from '../../types/bagged-item';
   styleUrls: ['./manage-bag.component.scss']
 })
 export class ManageBagComponent implements OnInit {
-  bag: Bag = { totalPrice: 0, items: [] };
+  bag: Bag = {totalPrice: 0, items: []};
 
-  constructor(private bagService: BagServerService, private manageToken: ManageUserTokenService) {}
+  constructor(private bagService: BagServerService, private manageToken: ManageUserTokenService) {
+  }
 
   ngOnInit(): void {
     const userId = this.manageToken.getUserIdViaToken();
@@ -42,5 +43,32 @@ export class ManageBagComponent implements OnInit {
           this.bag.totalPrice = 0;
         });
     }
+  }
+
+  updateBaggedItem(baggedItem: BaggedItem) {
+    this.bagService
+      .updateQuantity(baggedItem)
+      .subscribe(
+        _ => {
+          const baggedItemFromList =
+            this.bag.items.find(item => item.id === baggedItem.id);
+
+          // update total price 1
+          this.bag.totalPrice -= baggedItemFromList.bagItem.price;
+
+          // Computing unit price
+          const unitPrice = baggedItemFromList.bagItem.price / baggedItemFromList.quantity;
+
+          // Update quantity
+          baggedItemFromList.quantity = baggedItem.quantity;
+
+          // Update price
+          baggedItemFromList.bagItem.price = unitPrice * baggedItem.quantity;
+
+          // update total price 2
+          this.bag.totalPrice += unitPrice * baggedItem.quantity;
+        },
+        err => console.log(err)
+      );
   }
 }

@@ -17,14 +17,39 @@
       </div>
       <div class="column is-3">
         <div class="card-content">
-          <h1 class="title is-4 has-text-weight-bold">{{item.bagItem.price}}€</h1>
+          <h1 class="title is-4 has-text-weight-bold">{{item.bagItem.price | number: '1.2'}}€</h1>
         </div>
       </div>
       <div class="column is-1 is-align-items-center">
-        <div class="card-content">
-          <a class="delete" (click)="deleteBaggedItem({element: item, index: i})"></a>
+        <div class="columns is-flex is-flex-direction-column">
+          <div class="column">
+            <a class="button is-white is-large has-text-danger" (click)="deleteBaggedItem({element: item, index: i})">
+              <i class="far fa-times-circle"></i>
+            </a>
+          </div>
+          <div class="column">
+            <a class="button is-white is-large has-text-info-dark" (click)="modifyBaggedItem(item)"><i class="fas fa-edit"></i></a>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" [ngClass]="{ 'is-active': isModalVisible }">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modifier la quantité</p>
+      <button class="delete" aria-label="close" (click)="cancelModif()"></button>
+    </header>
+    <section class="modal-card-body">
+      <input type="number" class="input" placeholder="Nouvelle quantité" [(ngModel)]="itemToModify.quantity">
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="updateQuantity()">Sauvegarder</button>
+      <button class="button is-light" (click)="cancelModif()">Annuler</button>
+    </footer>
   </div>
 </div>
