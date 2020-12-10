@@ -10,6 +10,7 @@ import {AuthInterceptor} from './users/auth/auth.interceptor';
 import { HeaderComponent } from './common/components/header/header.component';
 import {CategoriesModule} from './categories/categories.module';
 import {BagModule} from './bag/bag.module';
+import {WishlistModule} from './wishlist/wishlist.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {BagModule} from './bag/bag.module';
     HttpClientModule,
     UsersModule,
     CategoriesModule,
-    BagModule
+    BagModule,
+    WishlistModule
   ],
   providers: [
     {
