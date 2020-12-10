@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {UsersServerService} from '../../../users/repositories/users-server.service';
 import {EventBusService} from '../../event-bus/event-bus.service';
 import {Events} from '../../event-bus/events.enum';
 import {Router} from '@angular/router';

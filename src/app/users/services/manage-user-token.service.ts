@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {UsersServerService} from '../repositories/users-server.service';
 import {ManageUserToken} from './manage-user-token';
-import {observable, Observable, of, Subject} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 
 @Injectable({

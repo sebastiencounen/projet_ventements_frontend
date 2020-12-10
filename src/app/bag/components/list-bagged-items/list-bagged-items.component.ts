@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BaggedItem, BaggedItems} from '../../types/bagged-item';
-import {Bag} from '../../types/bag';
 import {ElementToDelete} from '../../../common/types/element-to-delete';
 
 @Component({

@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {User} from '../../types/user';
-import {UsersServerService} from '../../repositories/users-server.service';
 import {Address} from '../../types/address';
 
 @Component({
