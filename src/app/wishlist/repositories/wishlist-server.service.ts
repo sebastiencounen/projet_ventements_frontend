@@ -13,8 +13,7 @@ export class WishlistServerService implements WishlistRepository {
   private static readonly URL_USER: string = environment.serverAddress + '/users';
   private static readonly URL_WISHLIST: string = environment.serverAddress + '/wishlists';
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) { }
 
   addItemToWishlist(userId: number, itemId: number): Observable<Wishlist> {
     return this.httpClient.post<Wishlist>(
