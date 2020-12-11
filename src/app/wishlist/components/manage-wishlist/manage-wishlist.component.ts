@@ -17,6 +17,10 @@ export class ManageWishlistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initWishlist();
+  }
+
+  private initWishlist() {
     const userId = this.manageToken.getUserIdViaToken();
 
     if (userId) {
@@ -28,5 +32,4 @@ export class ManageWishlistComponent implements OnInit {
         );
     }
   }
-
 }

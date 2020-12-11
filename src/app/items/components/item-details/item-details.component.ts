@@ -9,6 +9,8 @@ import {BagServerService} from '../../../bag/repositories/bag-server.service';
 import {ManageUserTokenService} from '../../../users/services/manage-user-token.service';
 import {ReviewsServerService} from '../../repositories/reviews-server.service';
 import {Subscription} from 'rxjs';
+import {WishlistServerService} from '../../../wishlist/repositories/wishlist-server.service';
+import {Wishlist} from '../../../wishlist/types/wishlist';
 
 @Component({
   selector: 'app-item-details',
@@ -26,19 +28,27 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   baggedItem: BaggedItem = {bagItem: this.item, quantity: 1, size: ''};
 
+  wishlistItem: Wishlist = { itemWishList: this.item }
+
   isModalVisible: boolean = false;
 
   constructor(private itemService: ItemsServerService,
               private bagService: BagServerService,
               private reviewService: ReviewsServerService,
+              private wishlistService: WishlistServerService,
               private manageToken: ManageUserTokenService,
               private router: Router,
-              private route: ActivatedRoute) {
-  }
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getItemById();
     this.getReviews();
+  }
+
+  ngOnDestroy(): void {
+    if (this.isAuthSubscription) {
+      this.isAuthSubscription.unsubscribe();
+    }
   }
 
   private getItemById() {
@@ -61,57 +71,71 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToBag() {
-      if (this.baggedItem.quantity < 1 || !this.baggedItem.size) return;
-      this.isAuthSubscription = this.manageToken
-        .isAuthenticated()
-        .subscribe(response => {
-          if (!response) {
-            this.router.navigate(['users', 'sign-in']);
-            return;
-          }
+    if (this.baggedItem.quantity < 1 || !this.baggedItem.size) return;
+    this.isAuthSubscription = this.manageToken
+      .isAuthenticated()
+      .subscribe(response => {
+        if (!response) {
+          this.router.navigate(['users', 'sign-in']);
+          return;
+        }
 
-          const userId = this.manageToken.getUserIdViaToken();
-          return this.bagService
-            .addItemToBag(userId, this.baggedItem)
-            .subscribe(
-              baggedItem => {
-                this.baggedItem = {bagItem: this.item, quantity: 1, size: ''};
-                this.isModalVisible = true;
-              },
-              err => console.log(err)
-            );
-        });
-    }
+        const userId = this.manageToken.getUserIdViaToken();
+        return this.bagService
+          .addItemToBag(userId, this.baggedItem)
+          .subscribe(
+            baggedItem => {
+              this.baggedItem = {bagItem: this.item, quantity: 1, size: ''};
+              this.isModalVisible = true;
+            },
+            err => console.log(err)
+          );
+      });
+  }
 
-    addReview(review: Review) {
-      this.manageToken
-        .isAuthenticated()
-        .subscribe(response => {
-          if (!response) {
-            this.router.navigate(['users', 'sign-in']);
-            return;
-          }
+  addReview(review: Review) {
+    this.manageToken
+      .isAuthenticated()
+      .subscribe(response => {
+        if (!response) {
+          this.router.navigate(['users', 'sign-in']);
+          return;
+        }
 
-          const userId = this.manageToken.getUserIdViaToken();
+        const userId = this.manageToken.getUserIdViaToken();
 
-          console.log(review);
+        return this.reviewService
+          .addReview(userId, this.item.id, review)
+          .subscribe(
+            review => this.reviews.push(review),
+            err => console.log(err)
+          );
+      });
+  }
 
-          return this.reviewService
-            .addReview(userId, this.item.id, review)
-            .subscribe(
-              review => this.reviews.push(review),
-              err => console.log(err)
-            );
-        });
-    }
+  addToWishlist() {
+    this.manageToken
+      .isAuthenticated()
+      .subscribe(response => {
+        if (!response) {
+          this.router.navigate(['users', 'sign-in']);
+          return;
+        }
+
+        const userId = this.manageToken.getUserIdViaToken();
+
+        return this.wishlistService
+          .addItemToWishlist(userId, this.item.id)
+          .subscribe(
+            wishlist => {
+              alert("Ajouté à la wishlist");
+            },
+            err => console.log(err)
+          );
+      });
+  }
 
   closeModal() {
     this.isModalVisible = false;
-  }
-
-  ngOnDestroy(): void {
-    if (this.isAuthSubscription) {
-      this.isAuthSubscription.unsubscribe();
-    }
   }
 }

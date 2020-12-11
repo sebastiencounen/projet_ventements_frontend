@@ -4,7 +4,7 @@ import {Item} from '../../items/types/item';
 export interface Wishlist {
   id?: number;
   addedAt?: Date;
-  userWishList: User;
+  userWishList?: User;
   itemWishList: Item;
 }
 
