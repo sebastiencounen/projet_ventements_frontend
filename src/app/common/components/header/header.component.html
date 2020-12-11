@@ -55,6 +55,11 @@
           <a class="button is-light" alt="Bouton du panier" routerLink="/bag">
             <i class="fas fa-shopping-bag"></i>
           </a>
+
+          <a *ngIf="isAdmin" class="button is-light" alt="Bouton administration" routerLink="/admin/dashboard">
+            <i class="fas fa-cog"></i>
+          </a>
+
           <a class="button is-light" alt="Bouton de déconnection" (click)="logOut()">
             <i class="fas fa-sign-out-alt"></i>
           </a>
