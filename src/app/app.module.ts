@@ -7,25 +7,21 @@ import {UsersModule} from './users/users.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './users/auth/auth.interceptor';
-import { HeaderComponent } from './common/components/header/header.component';
 import {CategoriesModule} from './categories/categories.module';
 import {BagModule} from './bag/bag.module';
 import {WishlistModule} from './wishlist/wishlist.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent
-  ],
+  declarations: [AppRoutingModule.components],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     UsersModule,
     CategoriesModule,
     BagModule,
-    WishlistModule
+    WishlistModule,
+    AppRoutingModule
   ],
   providers: [
     {
