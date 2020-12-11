@@ -1,3 +1,25 @@
-<section class="section">
-  <p>admin-dashboard works!</p>
-</section>
+<div class="columns is-flex is-flex-direction-row">
+  <div class="column is-3">
+    <aside class="menu py-6">
+      <p class="menu-label">Utilisateurs</p>
+      <ul class="menu-list">
+        <li><a>Gérer les utilisateurs inscrits</a></li>
+      </ul>
+      <p class="menu-label">Catégories</p>
+      <ul class="menu-list">
+        <li><a>Ajouter une catégorie</a></li>
+        <li><a>Ajouter une sous-catégorie</a></li>
+        <li><a>Supprimer une catégorie</a></li>
+      </ul>
+      <p class="menu-label">Articles</p>
+      <ul class="menu-list">
+        <li><a>Ajouter un article</a></li>
+        <li><a>Supprimer un article</a></li>
+        <li><a>Modifier un article</a></li>
+      </ul>
+    </aside>
+  </div>
+  <div class="column is-flex-grow-1">
+    <router-outlet></router-outlet>
+  </div>
+</div>
