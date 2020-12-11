@@ -15,13 +15,13 @@ import {WishlistModule} from './wishlist/wishlist.module';
   declarations: [AppRoutingModule.components],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     UsersModule,
     CategoriesModule,
     BagModule,
-    WishlistModule
+    WishlistModule,
+    AppRoutingModule
   ],
   providers: [
     {
