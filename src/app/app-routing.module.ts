@@ -6,7 +6,7 @@ import {HeaderComponent} from './common/components/header/header.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'categories', pathMatch: 'full' },
-  { path: '**', component: FourOhFourComponent, pathMatch: 'full' }
+  { path: '**', component: FourOhFourComponent }
 ];
 
 @NgModule({
