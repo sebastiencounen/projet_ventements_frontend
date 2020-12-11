@@ -6,6 +6,8 @@ import {ManageUserComponent} from './components/manage-user/manage-user.componen
 import {UserInformationComponent} from './components/user-information/user-information.component';
 import {RegisterAddressFormComponent} from './components/register-address-form/register-address-form.component';
 import {AuthGuardService} from './auth/auth-guard.service';
+import {AdminDashboardComponent} from './components/admin-dashboard/admin-dashboard.component';
+import {AdminGuardService} from './auth/admin-guard.service';
 
 const routes: Routes = [
   { path: 'users', canActivate: [AuthGuardService], component: ManageUserComponent,
@@ -15,7 +17,8 @@ const routes: Routes = [
     ]
   },
   { path: 'users/sign-in', component: SignInFormComponent },
-  { path: 'users/sign-up', component: SignUpFormComponent }
+  { path: 'users/sign-up', component: SignUpFormComponent },
+  { path: 'admin/dashboard', canActivate: [AdminGuardService], component: AdminDashboardComponent }
 ];
 
 @NgModule({
@@ -28,6 +31,7 @@ export class UsersRoutingModule {
     SignInFormComponent,
     SignUpFormComponent,
     UserInformationComponent,
-    RegisterAddressFormComponent
+    RegisterAddressFormComponent,
+    AdminDashboardComponent
   ];
 }
