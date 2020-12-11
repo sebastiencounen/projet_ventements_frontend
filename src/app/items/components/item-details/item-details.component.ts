@@ -127,12 +127,23 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
         return this.wishlistService
           .addItemToWishlist(userId, this.item.id)
           .subscribe(
-            wishlist => {
-              alert("Ajouté à la wishlist");
+            () => {
+              this.openSnackbar();
             },
             err => console.log(err)
           );
       });
+  }
+
+  openSnackbar() {
+    const snackbar = document.querySelector('.snackbar');
+
+    snackbar.classList.add('show');
+
+    setTimeout(() =>
+      snackbar.classList.remove('show'),
+      3000
+    );
   }
 
   closeModal() {
