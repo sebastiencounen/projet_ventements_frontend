@@ -21,6 +21,6 @@ export class CategoryFormComponent implements OnInit {
   submit() {
     this.categoriesService
       .addCategory(this.catForm.value)
-      .subscribe(cat => console.log(cat), err => console.log(err));
+      .subscribe(cat => this.catForm.reset(), err => console.log(err));
   }
 }

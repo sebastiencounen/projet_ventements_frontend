@@ -28,6 +28,6 @@ export class SubCategoryFormComponent implements OnInit {
   submit() {
     this.categoriesService
       .addSubcategory(this.subCatForm.value['categoryId'], this.subCatForm.value)
-      .subscribe(sub => console.log(sub), err => console.log(err));
+      .subscribe(sub => this.subCatForm.reset(), err => console.log(err));
   }
 }
