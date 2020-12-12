@@ -21,4 +21,8 @@ export class CategoriesServerService implements CategoriesRepository {
   getCategoryById(id: number): Observable<Category> {
     return this.httpClient.get<Category>(CategoriesServerService.URL + '/' + id);
   }
+
+  addCategory(category: Category): Observable<Category> {
+    return this.httpClient.post<Category>(CategoriesServerService.URL, category);
+  }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CategoriesServerService} from '../../../categories/repositories/categories-server.service';
 
 @Component({
   selector: 'app-category-form',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryFormComponent implements OnInit {
 
-  constructor() { }
+  catForm: FormGroup = this.fb.group({
+    title: ['', Validators.required]
+  });
+
+  constructor(private fb: FormBuilder, private categoriesService: CategoriesServerService) {}
 
   ngOnInit(): void {
   }
 
+  submit() {
+    this.categoriesService
+      .addCategory(this.catForm.value)
+      .subscribe(cat => console.log(cat), err => console.log(err));
+  }
 }
