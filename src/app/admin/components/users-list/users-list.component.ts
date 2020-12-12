@@ -26,6 +26,20 @@ export class UsersListComponent implements OnInit {
   deleteUser(user: ElementToDelete<User>) {
     this.usersService
       .delete(user.element.id)
-      .subscribe(_ => this.users.splice(user.index, 1), err => console.log(err));
+      .subscribe(_ => {
+        this.openSnackbar();
+        return this.users.splice(user.index, 1)
+      }, err => console.log(err));
+  }
+
+  private openSnackbar() {
+    const snackbar = document.querySelector('.snackbar');
+
+    snackbar.classList.add('show');
+
+    setTimeout(() =>
+        snackbar.classList.remove('show'),
+      3000
+    );
   }
 }
