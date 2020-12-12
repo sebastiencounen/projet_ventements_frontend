@@ -42,4 +42,8 @@ export class UsersServerService implements UsersRepository {
   registerAddress(userId: number, address: Address): Observable<Address> {
     return this.httpClient.post<Address>(UsersServerService.URL + '/' + userId + '/address', address);
   }
+
+  delete(userId: number): Observable<any> {
+    return this.httpClient.delete(UsersServerService.URL + '/' + userId);
+  }
 }
