@@ -6,13 +6,15 @@ import {ItemFormComponent} from './components/item-form/item-form.component';
 import {FileUploaderComponent} from '../common/components/file-uploader/file-uploader.component';
 import {CategoryFormComponent} from './components/category-form/category-form.component';
 import {SubCategoryFormComponent} from './components/sub-category-form/sub-category-form.component';
+import {UsersListComponent} from './components/users-list/users-list.component';
 
 const routes: Routes = [
   { path: 'admin/dashboard', canActivate: [AdminGuardService], component: AdminDashboardComponent,
     children: [
       { path: 'items/add', component: ItemFormComponent },
       { path: 'categories/add', component: CategoryFormComponent },
-      { path: 'subcategories/add', component: SubCategoryFormComponent }
+      { path: 'subcategories/add', component: SubCategoryFormComponent },
+      { path: 'users', component: UsersListComponent }
     ]
   }
 ];
@@ -27,6 +29,7 @@ export class AdminRoutingModule {
     ItemFormComponent,
     FileUploaderComponent,
     CategoryFormComponent,
-    SubCategoryFormComponent
+    SubCategoryFormComponent,
+    UsersListComponent
   ];
 }
