@@ -30,10 +30,11 @@
         <td>{{ user.birthdate | date: 'dd/MM/yyyy' }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.administrator ? 'Administrateur' : 'Utilisateur' }}</td>
-        <td>
+        <td *ngIf="user.userAddress">
           <div>{{ user.userAddress.street }}, {{ user.userAddress.homeNumber }}</div>
           <div>{{ user.userAddress.zip }} {{ user.userAddress.city }}</div>
         </td>
+        <td *ngIf="!user.userAddress">Pas d'adresse enregistrée</td>
         <td>
           <button class="button is-white" (click)="deleteUser({ element: user, index: i })">
             <i class="far fa-times-circle"></i>
