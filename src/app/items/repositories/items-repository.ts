@@ -12,4 +12,6 @@ export interface ItemsRepository {
   getReviews(idItem: number): Observable<Reviews>;
 
   addItem(categoryId: number, item: Item): Observable<Item>;
+
+  deleteItem(itemId: number): Observable<any>;
 }

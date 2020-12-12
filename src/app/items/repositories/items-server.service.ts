@@ -38,4 +38,8 @@ export class ItemsServerService implements ItemsRepository {
   addItem(categoryId: number, item: Item): Observable<Item> {
     return this.httpClient.post<Item>(ItemsServerService.URL + '/categories/' + categoryId + '/items', item);
   }
+
+  deleteItem(itemId: number): Observable<any> {
+    return this.httpClient.delete(ItemsServerService.URL + '/items/' + itemId);
+  }
 }
