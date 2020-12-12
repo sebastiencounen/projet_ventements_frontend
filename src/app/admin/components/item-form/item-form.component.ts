@@ -17,7 +17,6 @@ export class ItemFormComponent implements OnInit {
     categoryId: ['', Validators.required],
     label: ['', Validators.required],
     price: ['', Validators.required],
-    imageItem: ['', Validators.required],
     descriptionItem: ['', Validators.required]
   });
 

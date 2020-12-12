@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 })
 export class FileUploaderComponent implements OnInit {
 
+  fileName: string = '';
   basePath: string = '/images';
   hostedUrl: string = '';
   task: AngularFireUploadTask;
@@ -27,6 +28,7 @@ export class FileUploaderComponent implements OnInit {
     const file = e.target.files[0];
 
     if (file) {
+      this.fileName = file.name;
       const filePath = `${this.basePath}/${Date.now().toString()}${file.name}`;
       this.task = this.fireStorage.upload(filePath, file);
 
