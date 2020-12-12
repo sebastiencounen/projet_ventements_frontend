@@ -1,0 +1,38 @@
+<h2 class="title">Supprimer des articles</h2>
+
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Label</th>
+        <th>Prix</th>
+        <th>Catégorie</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Label</th>
+        <th>Prix</th>
+        <th>Catégorie</th>
+        <th>Action</th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr *ngFor="let item of items; let i = index;">
+        <td><a [routerLink]="['/item', item.id]">{{ item.label }}</a></td>
+        <td>{{ item.price }}</td>
+        <td>
+          <a [routerLink]="['/category', item.itemCategory.id, 'items']">
+            {{ item.itemCategory.title }}
+          </a>
+        </td>
+        <td>
+          <button class="button is-white has-text-danger" (click)="deleteItem({ element: item, index: i })">
+            <i class="far fa-times-circle"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
