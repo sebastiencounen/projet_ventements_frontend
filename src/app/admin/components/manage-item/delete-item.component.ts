@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-manage-item',
-  templateUrl: './manage-item.component.html',
-  styleUrls: ['./manage-item.component.scss']
+  templateUrl: './delete-item.component.html',
+  styleUrls: ['./delete-item.component.scss']
 })
-export class ManageItemComponent implements OnInit {
+export class DeleteItemComponent implements OnInit {
 
   constructor() { }
 
