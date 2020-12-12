@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {SignInFormComponent} from './components/sign-in-form/sign-in-form.component';
 import {SignUpFormComponent} from './components/sign-up-form/sign-up-form.component';
 import {ManageUserComponent} from './components/manage-user/manage-user.component';
 import {UserInformationComponent} from './components/user-information/user-information.component';
 import {RegisterAddressFormComponent} from './components/register-address-form/register-address-form.component';
 import {AuthGuardService} from './auth/auth-guard.service';
-import {AdminDashboardComponent} from './components/admin-dashboard/admin-dashboard.component';
-import {AdminGuardService} from './auth/admin-guard.service';
 
 const routes: Routes = [
   { path: 'users', canActivate: [AuthGuardService], component: ManageUserComponent,
@@ -18,7 +16,6 @@ const routes: Routes = [
   },
   { path: 'users/sign-in', component: SignInFormComponent },
   { path: 'users/sign-up', component: SignUpFormComponent },
-  { path: 'admin/dashboard', canActivate: [AdminGuardService], component: AdminDashboardComponent }
 ];
 
 @NgModule({
@@ -32,6 +29,5 @@ export class UsersRoutingModule {
     SignUpFormComponent,
     UserInformationComponent,
     RegisterAddressFormComponent,
-    AdminDashboardComponent
   ];
 }
