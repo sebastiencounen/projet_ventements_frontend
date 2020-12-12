@@ -15,6 +15,10 @@ export class ItemsServerService implements ItemsRepository {
 
   constructor(private httpClient: HttpClient) { }
 
+  query(): Observable<Items> {
+    return this.httpClient.get<Items>(ItemsServerService.URL + '/items');
+  }
+
   getItemsByCategoryId(idCategory: number): Observable<Items> {
     return this.httpClient.get<Items>(
       ItemsServerService.URL + '/categories/' + idCategory + '/items'

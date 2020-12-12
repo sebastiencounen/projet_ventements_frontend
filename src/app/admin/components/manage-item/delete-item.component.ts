@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ItemsServerService} from '../../../items/repositories/items-server.service';
+import {Items} from '../../../items/types/item';
 
 @Component({
   selector: 'app-manage-item',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteItemComponent implements OnInit {
 
-  constructor() { }
+  items: Items = [];
+
+  constructor(private itemsService: ItemsServerService) {}
 
   ngOnInit(): void {
   }
