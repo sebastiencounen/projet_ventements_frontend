@@ -10,6 +10,7 @@ import {AuthInterceptor} from './users/auth/auth.interceptor';
 import {CategoriesModule} from './categories/categories.module';
 import {BagModule} from './bag/bag.module';
 import {WishlistModule} from './wishlist/wishlist.module';
+import {OrdersModule} from './orders/orders.module';
 
 @NgModule({
   declarations: [AppRoutingModule.components],
@@ -21,6 +22,7 @@ import {WishlistModule} from './wishlist/wishlist.module';
     CategoriesModule,
     BagModule,
     WishlistModule,
+    OrdersModule,
     AppRoutingModule
   ],
   providers: [

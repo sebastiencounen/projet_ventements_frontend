@@ -94,7 +94,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   }
 
   addReview(review: Review) {
-    this.manageToken
+    this.isAuthSubscription = this.manageToken
       .isAuthenticated()
       .subscribe(response => {
         if (!response) {
@@ -114,7 +114,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToWishlist() {
-    this.manageToken
+    this.isAuthSubscription = this.manageToken
       .isAuthenticated()
       .subscribe(response => {
         if (!response) {
