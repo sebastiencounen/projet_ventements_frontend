@@ -1,5 +1,5 @@
 <h2 class="title">Ajouter un article</h2>
-<form [formGroup]="itemForm" (ngSubmit)="submit()">
+<form [formGroup]="itemForm" (ngSubmit)="submit()" class="column is-8">
   <div class="field">
     <div class="control">
       <app-file-uploader (imageUploaded)="onImageUploaded($event)"></app-file-uploader>
