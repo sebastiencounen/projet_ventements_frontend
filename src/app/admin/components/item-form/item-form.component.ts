@@ -11,6 +11,7 @@ import {CategoriesServerService} from '../../../categories/repositories/categori
 export class ItemFormComponent implements OnInit {
 
   categories: Categories = [];
+  hostedImageUrl: string;
 
   itemForm: FormGroup = this.fb.group({
     categoryId: ['', Validators.required],
@@ -36,5 +37,9 @@ export class ItemFormComponent implements OnInit {
 
   submit(): void {
 
+  }
+
+  onImageUploaded(imageUrl: string) {
+    this.hostedImageUrl = imageUrl;
   }
 }

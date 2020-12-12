@@ -1,4 +1,5 @@
 <h2 class="title">Ajouter un article</h2>
 <form [formGroup]="itemForm" (ngSubmit)="submit()">
-
+  <app-file-uploader (imageUploaded)="onImageUploaded($event)"></app-file-uploader>
+  <p *ngIf="hostedImageUrl">{{ hostedImageUrl }}</p>
 </form>

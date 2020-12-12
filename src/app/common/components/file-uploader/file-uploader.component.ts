@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 
@@ -15,6 +15,9 @@ export class FileUploaderComponent implements OnInit {
 
   progressValue: Observable<number>;
 
+  @Output()
+  imageUploaded: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private fireStorage: AngularFireStorage) {}
 
   ngOnInit(): void {
@@ -24,12 +27,16 @@ export class FileUploaderComponent implements OnInit {
     const file = e.target.files[0];
 
     if (file) {
-      const filePath = `${this.basePath}/${file.name}${Date.now().toString()}`;
+      const filePath = `${this.basePath}/${Date.now().toString()}${file.name}`;
       this.task = this.fireStorage.upload(filePath, file);
 
       this.progressValue = this.task.percentageChanges();
 
-      (await this.task).ref.getDownloadURL().then((url: string) => this.hostedUrl = url);
+      this.task.then(a => {
+        return a.ref.getDownloadURL()
+          .then(url => this.imageUploaded.emit(url))
+      });
+      // (await this.task).ref.getDownloadURL().then((url: string) => this.hostedUrl = url);
     } else {
       this.hostedUrl = '';
     }
