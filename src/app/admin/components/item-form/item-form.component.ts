@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Categories} from '../../../categories/types/category';
 import {CategoriesServerService} from '../../../categories/repositories/categories-server.service';
+import {ItemsServerService} from '../../../items/repositories/items-server.service';
 
 @Component({
   selector: 'app-item-form',
@@ -17,12 +18,13 @@ export class ItemFormComponent implements OnInit {
     categoryId: ['', Validators.required],
     label: ['', Validators.required],
     price: ['', Validators.required],
-    imageItem: [{ value: '', disabled: true }, Validators.required],
+    imageItem: ['' , Validators.required],
     descriptionItem: ['', Validators.required]
   });
 
   constructor(private fb: FormBuilder,
-              private categoryService: CategoriesServerService
+              private categoryService: CategoriesServerService,
+              private itemsService: ItemsServerService
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +41,12 @@ export class ItemFormComponent implements OnInit {
   }
 
   submit(): void {
-
+    this.itemsService
+      .addItem(this.itemForm.value["categoryId"], this.itemForm.value)
+      .subscribe(
+        item => console.log(item),
+        err => console.log(err)
+      );
   }
 
   onImageUploaded(imageUrl: string) {

@@ -45,6 +45,6 @@
     </div>
   </div>
   <div class="field">
-    <button type="submit" class="button is-primary" [disabled]="itemForm.invalid && !hostedImageUrl">Ajouter</button>
+    <button type="submit" class="button is-primary" [disabled]="itemForm.invalid || !hostedImageUrl">Ajouter</button>
   </div>
 </form>

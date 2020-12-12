@@ -8,4 +8,6 @@ export interface ItemsRepository {
   getItemById(id: number): Observable<Item>;
 
   getReviews(idItem: number): Observable<Reviews>;
+
+  addItem(categoryId: number, item: Item): Observable<Item>;
 }
