@@ -11,6 +11,10 @@ import {CategoriesModule} from './categories/categories.module';
 import {BagModule} from './bag/bag.module';
 import {WishlistModule} from './wishlist/wishlist.module';
 import {AdminModule} from './admin/admin.module';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppRoutingModule.components],
@@ -18,6 +22,9 @@ import {AdminModule} from './admin/admin.module';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
     UsersModule,
     CategoriesModule,
     BagModule,
