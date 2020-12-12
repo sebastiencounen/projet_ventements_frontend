@@ -17,6 +17,7 @@ export class ItemFormComponent implements OnInit {
     categoryId: ['', Validators.required],
     label: ['', Validators.required],
     price: ['', Validators.required],
+    imageItem: [{ value: '', disabled: true }, Validators.required],
     descriptionItem: ['', Validators.required]
   });
 
@@ -29,7 +30,10 @@ export class ItemFormComponent implements OnInit {
     this.categoryService
       .query()
       .subscribe(
-        categories => this.categories = categories,
+        categories =>
+          this.categories =
+            categories.reduce(
+              (p, c, i, a) => [...p, ...c.subCategories], []),
         err => console.log(err)
       );
   }
@@ -40,5 +44,6 @@ export class ItemFormComponent implements OnInit {
 
   onImageUploaded(imageUrl: string) {
     this.hostedImageUrl = imageUrl;
+    this.itemForm.patchValue({ imageItem: this.hostedImageUrl });
   }
 }
