@@ -10,6 +10,7 @@ import {AuthInterceptor} from './users/auth/auth.interceptor';
 import {CategoriesModule} from './categories/categories.module';
 import {BagModule} from './bag/bag.module';
 import {WishlistModule} from './wishlist/wishlist.module';
+import {OrdersModule} from './orders/orders.module';
 import {AdminModule} from './admin/admin.module';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
@@ -30,6 +31,7 @@ import {FileUploaderComponent} from './common/components/file-uploader/file-uplo
     CategoriesModule,
     BagModule,
     WishlistModule,
+    OrdersModule,
     AdminModule,
     AppRoutingModule
   ],
