@@ -36,7 +36,7 @@
         </td>
         <td *ngIf="!user.userAddress">Pas d'adresse enregistrée</td>
         <td>
-          <button class="button is-white" (click)="deleteUser({ element: user, index: i })">
+          <button class="button is-white" [disabled]="user.administrator" (click)="deleteUser({ element: user, index: i })">
             <i class="far fa-times-circle"></i>
           </button>
         </td>

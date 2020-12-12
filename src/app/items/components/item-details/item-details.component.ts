@@ -128,15 +128,16 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
           .addItemToWishlist(userId, this.item.id)
           .subscribe(
             () => {
-              this.openSnackbar();
+              this.openSnackbar("Ajouté à la liste de souhaits !");
             },
-            err => console.log(err)
+            err => this.openSnackbar('L\'article est déjà présent dans votre liste souhaits')
           );
       });
   }
 
-  openSnackbar() {
+  openSnackbar(text: string) {
     const snackbar = document.querySelector('.snackbar');
+    snackbar.innerHTML = text;
 
     snackbar.classList.add('show');
 
