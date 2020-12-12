@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {OrdersRepository} from './orders-repository';
-import {Orders} from '../types/order';
+import {Order, Orders} from '../types/order';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {OrderedItems} from '../types/ordered-item';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,16 @@ export class OrdersServerService implements OrdersRepository {
   getOrders(userId: number): Observable<Orders> {
     return this.httpClient.get<Orders>(
       `${OrdersServerService.URL_USERS}/${userId}/orders`
+    );
+  }
+
+  createOrder(userId: number): Observable<Order> {
+    return this.httpClient.post<Order>(`${OrdersServerService.URL_USERS}/${userId}/orders`, {});
+  }
+
+  addOrderedItems(orderId: number, orderedItems: OrderedItems): Observable<any> {
+    return this.httpClient.post<any>(
+      `${OrdersServerService.URL_ORDERS}/${orderId}/orderedItems`, orderedItems
     );
   }
 }
