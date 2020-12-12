@@ -13,13 +13,15 @@
       </ul>
       <p class="menu-label">Articles</p>
       <ul class="menu-list">
-        <li><a>Ajouter un article</a></li>
+        <li><a routerLink="items/add" routerLinkActive="is-active">Ajouter un article</a></li>
         <li><a>Supprimer un article</a></li>
         <li><a>Modifier un article</a></li>
       </ul>
     </aside>
   </div>
-  <div class="column is-flex-grow-1">
-    <router-outlet></router-outlet>
+  <div class="column is-6">
+    <section class="section">
+      <router-outlet></router-outlet>
+    </section>
   </div>
 </div>

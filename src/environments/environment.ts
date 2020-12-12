@@ -4,7 +4,15 @@
 
 export const environment = {
   production: false,
-  serverAddress: "https://localhost:5001/api"
+  serverAddress: "https://localhost:5001/api",
+  firebase: {
+    apiKey: "AIzaSyC3p2Phzc94IlRPYYOfgCgqROPRKdFPfoI",
+    authDomain: "ventements-83dd9.firebaseapp.com",
+    projectId: "ventements-83dd9",
+    storageBucket: "ventements-83dd9.appspot.com",
+    messagingSenderId: "1080049376592",
+    appId: "1:1080049376592:web:1e58897706bb61856a2055"
+  }
 };
 
 /*

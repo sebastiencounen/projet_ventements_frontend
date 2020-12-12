@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ventements-83dd9": {
+      "hosting": {
+        "ventements": [
+          "ventements-83dd9"
+        ]
+      }
+    }
+  }
+}
