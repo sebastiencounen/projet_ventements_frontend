@@ -25,4 +25,8 @@ export class CategoriesServerService implements CategoriesRepository {
   addCategory(category: Category): Observable<Category> {
     return this.httpClient.post<Category>(CategoriesServerService.URL, category);
   }
+
+  addSubcategory(categoryId: number, subCategory: Category): Observable<Category> {
+    return this.httpClient.post<Category>(CategoriesServerService.URL + '/' + categoryId + '/subcategories', subCategory);
+  }
 }

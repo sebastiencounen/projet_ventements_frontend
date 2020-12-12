@@ -7,4 +7,6 @@ export interface CategoriesRepository {
   getCategoryById(id: number): Observable<Category>;
 
   addCategory(category: Category): Observable<Category>;
+
+  addSubcategory(categoryId: number, subCategory: Category): Observable<Category>;
 }
