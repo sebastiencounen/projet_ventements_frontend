@@ -30,4 +30,8 @@ export class ItemsServerService implements ItemsRepository {
       ItemsServerService.URL + '/items/' + idItem + '/reviews'
     );
   }
+
+  addItem(categoryId: number, item: Item): Observable<Item> {
+    return this.httpClient.post<Item>(ItemsServerService.URL + '/categories/' + categoryId + '/items', item);
+  }
 }

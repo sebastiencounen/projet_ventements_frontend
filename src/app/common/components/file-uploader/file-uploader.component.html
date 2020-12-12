@@ -1,0 +1,38 @@
+<div class="columns is-flex is-justify-content-flex-start">
+  <div class="column">
+    <div class="file">
+      <label class="file-label">
+        <input type="file" class="file-input" name="file" (input)="onFileChanged($event)"
+               accept=".jpeg,.jpg,.png,.svg"/>
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fas fa-upload"></i>
+          </span>
+          <span class="file-label" *ngIf="!fileName">
+            Choisissez l'image de l'article
+          </span>
+          <span class="file-label" *ngIf="fileName">
+            {{ fileName }}
+          </span>
+        </span>
+      </label>
+    </div>
+    <!-- End -->
+    <!-- Progress Bar -->
+    <div class="column">
+      <div class="columns is-flex is-align-items-center" *ngIf="progressValue | async as val">
+        <div class="column is-flex-grow-0 is-flex-shrink-2">
+          <span *ngIf="val < 100" style="color: rgb(255, 60, 0); font-size: 17px; font-weight: 410;">
+            {{ val | number: '1.2' }}%
+          </span>
+            <span *ngIf="val == 100" class="is-inline-block" style="color:rgb(1, 153, 34);  font-size: 17px; font-weight: 410;">
+              <i class="fas fa-check"></i>
+            </span>
+        </div>
+        <div class="column is-flex-grow-1">
+          <progress class="progress is-primary" [value]="val" max="100"></progress>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

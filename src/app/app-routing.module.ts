@@ -17,6 +17,6 @@ export class AppRoutingModule {
   static components = [
     AppComponent,
     HeaderComponent,
-    FourOhFourComponent
+    FourOhFourComponent,
   ];
 }

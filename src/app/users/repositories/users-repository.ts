@@ -12,4 +12,6 @@ export interface UsersRepository {
   getById(id: number): Observable<User>;
 
   registerAddress(userId: number, address: Address): Observable<Address>;
+
+  delete(userId: number): Observable<any>;
 }
