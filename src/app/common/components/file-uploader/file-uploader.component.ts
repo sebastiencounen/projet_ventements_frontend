@@ -36,7 +36,11 @@ export class FileUploaderComponent implements OnInit {
 
       this.task.then(a => {
         return a.ref.getDownloadURL()
-          .then(url => this.imageUploaded.emit(url))
+          .then(url => {
+            e.target.value = '';
+            this.fileName = '';
+            return this.imageUploaded.emit(url);
+          })
       });
       // (await this.task).ref.getDownloadURL().then((url: string) => this.hostedUrl = url);
     } else {

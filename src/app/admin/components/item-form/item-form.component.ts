@@ -44,7 +44,7 @@ export class ItemFormComponent implements OnInit {
     this.itemsService
       .addItem(this.itemForm.value["categoryId"], this.itemForm.value)
       .subscribe(
-        item => console.log(item),
+        item => this.itemForm.reset(),
         err => console.log(err)
       );
   }
