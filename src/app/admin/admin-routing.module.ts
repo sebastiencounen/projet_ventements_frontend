@@ -11,6 +11,7 @@ import {UsersListComponent} from './components/users-list/users-list.component';
 const routes: Routes = [
   { path: 'admin/dashboard', canActivate: [AdminGuardService], component: AdminDashboardComponent,
     children: [
+      { path: '', redirectTo: 'users', pathMatch: 'full' },
       { path: 'items/add', component: ItemFormComponent },
       { path: 'categories/add', component: CategoryFormComponent },
       { path: 'subcategories/add', component: SubCategoryFormComponent },

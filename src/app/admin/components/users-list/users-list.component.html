@@ -1,1 +1,45 @@
 <h2 class="title">Utilisateurs inscrits sur le site</h2>
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><abbr title="Identifiant">ID</abbr></th>
+        <th>Nom et prénom</th>
+        <th>Date de naissance</th>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Adresse</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th><abbr title="Identifiant">ID</abbr></th>
+      <th>Nom et prénom</th>
+      <th>Date de naissance</th>
+      <th>Email</th>
+      <th>Rôle</th>
+      <th>Adresse</th>
+      <th>Action</th>
+    </tr>
+    </tfoot>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index;">
+        <td>{{ user.id }}</td>
+        <td>{{ user.lastname }} {{ user.firstname }}</td>
+        <td>{{ user.birthdate | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.administrator ? 'Administrateur' : 'Utilisateur' }}</td>
+        <td>
+          <div>{{ user.userAddress.street }}, {{ user.userAddress.homeNumber }}</div>
+          <div>{{ user.userAddress.zip }} {{ user.userAddress.city }}</div>
+        </td>
+        <td>
+          <button class="button is-white" (click)="deleteUser({ element: user, index: i })">
+            <i class="far fa-times-circle"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
