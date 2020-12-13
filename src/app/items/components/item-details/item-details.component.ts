@@ -74,7 +74,11 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToBag() {
-    if (this.baggedItem.quantity < 1 || !this.baggedItem.size) return;
+    if (this.baggedItem.quantity < 1)
+      return this.openSnackbar("Vous devez ajouter une quantité d'au moins un article !")
+    if (!this.baggedItem.size)
+      return this.openSnackbar('Veuillez préciser une taille !');
+
     this.isAuthSubscription = this.manageToken
       .isAuthenticated()
       .subscribe(response => {
@@ -91,7 +95,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
               this.baggedItem = {bagItem: this.item, quantity: 1, size: ''};
               this.isModalVisible = true;
             },
-            err => console.log(err)
+            err => this.openSnackbar('L\'article est déjà présent dans votre panier')
           );
       });
   }
