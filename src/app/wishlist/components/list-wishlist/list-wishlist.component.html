@@ -1,6 +1,6 @@
 <section class="section p-1">
   <div *ngFor="let wish of wishlists; let i = index;" class="card mb-2 p-5">
-    <div class="columns is-flex is-align-items-center is-justify-content-space-around">
+    <div class="columns is-flex-desktop-only is-align-items-center is-justify-content-space-around">
       <div class="column is-1 mx-6">
         <figure class="image">
           <img [src]="wish.itemWishList.imageItem" [alt]="wish.itemWishList.label">

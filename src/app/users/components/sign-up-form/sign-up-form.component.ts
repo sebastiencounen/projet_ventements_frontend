@@ -12,6 +12,7 @@ import {Events} from '../../../common/event-bus/events.enum';
   styleUrls: ['./sign-up-form.component.scss']
 })
 export class SignUpFormComponent implements OnInit {
+  errorMessage: string;
 
   signUpForm: FormGroup = this.fb.group({
     firstname: ['', Validators.required],
@@ -35,7 +36,11 @@ export class SignUpFormComponent implements OnInit {
           this.router.navigate(['/'])
           this.eventBus.next(new EventData(Events.USER_CONNECTED, user));
         },
-        err => console.log(err.error.message)
+        err => this.errorMessage = err.error.message
       );
+  }
+
+  closeErrorMessage() {
+    this.errorMessage = '';
   }
 }

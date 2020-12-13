@@ -12,6 +12,7 @@ import {Events} from '../../../common/event-bus/events.enum';
   styleUrls: ['./sign-in-form.component.scss']
 })
 export class SignInFormComponent implements OnInit {
+  errorMessage: string;
 
   signInFrom: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -29,6 +30,10 @@ export class SignInFormComponent implements OnInit {
       .subscribe(user => {
         this.router.navigate(['/']);
         this.eventBus.next(new EventData(Events.USER_CONNECTED, user));
-      });
+      }, err => this.errorMessage = err.error.message);
+  }
+
+  closeErrorMessage() {
+    this.errorMessage = '';
   }
 }

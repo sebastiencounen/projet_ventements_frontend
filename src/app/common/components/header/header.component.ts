@@ -11,6 +11,8 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  isMenuVisible: boolean = false;
+
   isAuth: boolean;
   isAdmin: boolean;
 
@@ -52,5 +54,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isAuth = false;
     this.isAdmin = false;
     this.router.navigate(["/"]);
+  }
+
+  toggleMenu() {
+    this.isMenuVisible = !this.isMenuVisible;
   }
 }
