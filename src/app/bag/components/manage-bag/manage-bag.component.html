@@ -32,3 +32,9 @@
     (baggedItemModified)="updateBaggedItem($event)"
   ></app-list-bagged-items>
 </section>
+
+<app-snackbar
+  [(isShown)]="isSnackbarVisible"
+  [duration]="3"
+  [message]="snackbarMessage"
+></app-snackbar>

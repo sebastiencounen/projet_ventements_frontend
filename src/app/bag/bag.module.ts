@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BagRoutingModule } from './bag-routing.module';
 import {FormsModule} from '@angular/forms';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import {FormsModule} from '@angular/forms';
     imports: [
         CommonModule,
         BagRoutingModule,
-        FormsModule
+        FormsModule,
+        SharedModule
     ]
 })
 export class BagModule { }

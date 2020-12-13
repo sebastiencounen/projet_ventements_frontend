@@ -8,7 +8,8 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 @NgModule({
   declarations: [FileUploaderComponent, SnackbarComponent],
   exports: [
-    FileUploaderComponent
+    FileUploaderComponent,
+    SnackbarComponent
   ],
   imports: [
     CommonModule

@@ -28,7 +28,7 @@ export class SnackbarComponent implements OnInit, OnChanges {
       setTimeout(() => {
         this.isShown = false;
         this.isShownChange.emit(this.isShown);
-      }, this.duration * 100);
+      }, this.duration * 1000);
     }
   }
 }

@@ -27,7 +27,6 @@ export class ListBaggedItemsComponent implements OnInit {
   }
 
   deleteBaggedItem(element: ElementToDelete<BaggedItem>) {
-    console.log(`Going to delete baggedItem of id : ${element.element.id}`);
     this.baggedItemDeleted.next(element);
   }
 
