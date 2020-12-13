@@ -1,5 +1,5 @@
 import {User} from '../../users/types/user';
-import {OrderedItems} from './ordered-item';
+import {Items} from '../../items/types/item';
 
 export interface Order {
   id?: number;
@@ -7,7 +7,7 @@ export interface Order {
   orderedAt?: Date;
   totalPrice?: number;
   ordered?: User;
-  orderedItems?: OrderedItems;
+  orderedItems?: Items;
 }
 
 export declare type Orders = Order[];

@@ -3,9 +3,23 @@
     <a class="navbar-item" routerLink="/categories">
       <h1 class="title ml-2 has-text-weight-bold">Ventements</h1>
     </a>
+
+    <a
+      role="button"
+      class="navbar-burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+      [ngClass]="{ 'is-active': isMenuVisible }"
+      (click)="toggleMenu()"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
   </div>
 
-  <div class="navbar-menu">
+  <div class="navbar-menu" [ngClass]="{ 'is-active': isMenuVisible }">
     <!--
         <div class="navbar-start">
           <a class="navbar-item">

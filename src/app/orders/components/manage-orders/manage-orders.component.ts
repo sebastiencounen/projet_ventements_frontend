@@ -26,7 +26,10 @@ export class ManageOrdersComponent implements OnInit {
     if (userId) {
       return this.ordersService
         .getOrders(userId)
-        .subscribe(orders => this.orders = orders);
+        .subscribe(orders => {
+          this.orders = orders;
+          return console.log(orders);
+        });
     }
   }
 

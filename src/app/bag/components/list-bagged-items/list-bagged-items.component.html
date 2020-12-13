@@ -1,6 +1,6 @@
 <div class="is-flex-direction-row">
   <div *ngFor="let item of items; let i = index;" class="card mb-2 p-6">
-    <div class="columns is-vcentered">
+    <div class="columns is-flex-desktop-only is-vcentered">
       <div class="column is-2">
         <figure class="image is-inline-block is-64x64">
           <img [src]="item.bagItem.imageItem" alt="">
@@ -21,13 +21,13 @@
         </div>
       </div>
       <div class="column is-1 is-align-items-center">
-        <div class="columns is-flex is-flex-direction-column">
-          <div class="column">
+        <div class="columns is-flex-desktop-only is-flex-direction-column">
+          <div class="column is-inline-block">
             <a class="button is-white is-large has-text-danger" (click)="deleteBaggedItem({element: item, index: i})">
               <i class="far fa-times-circle"></i>
             </a>
           </div>
-          <div class="column">
+          <div class="column is-inline-block">
             <a class="button is-white is-large has-text-info-dark" (click)="modifyBaggedItem(item)"><i class="fas fa-edit"></i></a>
           </div>
         </div>
