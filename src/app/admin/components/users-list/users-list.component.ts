@@ -12,6 +12,9 @@ export class UsersListComponent implements OnInit {
 
   users: Users = [];
 
+  isSnackbarVisible: boolean = false;
+  snackbarMessage: string;
+
   constructor(private usersService: UsersServerService) {}
 
   ngOnInit(): void {
@@ -27,19 +30,9 @@ export class UsersListComponent implements OnInit {
     this.usersService
       .delete(user.element.id)
       .subscribe(_ => {
-        this.openSnackbar();
-        return this.users.splice(user.index, 1)
+        this.isSnackbarVisible = true;
+        this.snackbarMessage = 'Utilisateur bien supprimé';
+        return this.users.splice(user.index, 1);
       }, err => console.log(err));
-  }
-
-  private openSnackbar() {
-    const snackbar = document.querySelector('.snackbar');
-
-    snackbar.classList.add('show');
-
-    setTimeout(() =>
-        snackbar.classList.remove('show'),
-      3000
-    );
   }
 }
