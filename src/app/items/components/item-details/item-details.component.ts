@@ -21,14 +21,14 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   isAuthSubscription: Subscription;
 
-  item: Item = {label: ""};
+  item: Item = {label: ''};
   reviews: Reviews = [];
 
   stars: number[] = [1, 2, 3, 4, 5];
 
   baggedItem: BaggedItem = {bagItem: this.item, quantity: 1, size: ''};
 
-  wishlistItem: Wishlist = { itemWishList: this.item }
+  wishlistItem: Wishlist = {itemWishList: this.item};
 
   isModalVisible: boolean = false;
   isSnackbarVisible: boolean = false;
@@ -41,7 +41,8 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
               private wishlistService: WishlistServerService,
               private manageToken: ManageUserTokenService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.getItemById();
@@ -74,10 +75,17 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToBag() {
-    if (this.baggedItem.quantity < 1)
-      return this.openSnackbar("Vous devez ajouter une quantité d'au moins un article !")
-    if (!this.baggedItem.size)
-      return this.openSnackbar('Veuillez préciser une taille !');
+    if (this.baggedItem.quantity < 1) {
+      this.isSnackbarVisible = true;
+      this.snackbarMessage = 'Vous devez ajouter une quantité d\'au moins un article !';
+      return;
+    }
+
+    if (!this.baggedItem.size) {
+      this.isSnackbarVisible = true;
+      this.snackbarMessage = 'Veuillez préciser une taille !';
+      return;
+    }
 
     this.isAuthSubscription = this.manageToken
       .isAuthenticated()
@@ -95,7 +103,10 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
               this.baggedItem = {bagItem: this.item, quantity: 1, size: ''};
               this.isModalVisible = true;
             },
-            err => this.openSnackbar('L\'article est déjà présent dans votre panier')
+            err => {
+              this.isSnackbarVisible = true;
+              this.snackbarMessage = err.error.message;
+            }
           );
       });
   }
