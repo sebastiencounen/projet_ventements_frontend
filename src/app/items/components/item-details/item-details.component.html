@@ -1,6 +1,6 @@
 <section class="section">
     <div class="container pt-6">
-      <div class="columns is-flex is-justify-content-space-around">
+      <div class="columns is-flex-desktop-only is-justify-content-space-around">
         <!--Image item-->
         <div class="column is-4">
           <figure class="image">
@@ -82,7 +82,7 @@
                         </h2>
                       </div>
                       <!--Stars-->
-                      <div class="column is-1" *ngFor="let i of stars">
+                      <div class="column is-1 is-inline-block" *ngFor="let i of stars">
                         <i class="fas fa-star has-text-primary" *ngIf="i <= r.stars"></i>
                         <i class="far fa-star has-text-primary" *ngIf="i > r.stars"></i>
                       </div>
