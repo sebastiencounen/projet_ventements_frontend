@@ -31,6 +31,9 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   wishlistItem: Wishlist = { itemWishList: this.item }
 
   isModalVisible: boolean = false;
+  isSnackbarVisible: boolean = false;
+
+  snackbarMessage: string;
 
   constructor(private itemService: ItemsServerService,
               private bagService: BagServerService,
@@ -128,23 +131,15 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
           .addItemToWishlist(userId, this.item.id)
           .subscribe(
             () => {
-              this.openSnackbar("Ajouté à la liste de souhaits !");
+              this.isSnackbarVisible = true;
+              this.snackbarMessage = 'L\'article a bien été ajouté à votre liste de souhaits';
             },
-            err => this.openSnackbar('L\'article est déjà présent dans votre liste souhaits')
+            err => {
+              this.isSnackbarVisible = true;
+              this.snackbarMessage = err.error.message;
+            }
           );
       });
-  }
-
-  openSnackbar(text: string) {
-    const snackbar = document.querySelector('.snackbar');
-    snackbar.innerHTML = text;
-
-    snackbar.classList.add('show');
-
-    setTimeout(() =>
-      snackbar.classList.remove('show'),
-      3000
-    );
   }
 
   closeModal() {

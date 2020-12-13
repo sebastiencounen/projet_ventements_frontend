@@ -36,3 +36,9 @@
     </tbody>
   </table>
 </div>
+
+<app-snackbar
+  [(isShown)]="isSnackbarVisible"
+  [duration]="3"
+  [message]="snackbarMessage"
+></app-snackbar>

@@ -19,6 +19,9 @@ export class ManageBagComponent implements OnInit {
   bag: Bag = {totalPrice: 0, items: []};
   order: Order;
 
+  isSnackbarVisible: boolean = false;
+  snackbarMessage: string;
+
   constructor(private bagService: BagServerService,
               private manageToken: ManageUserTokenService,
               private orderService: OrdersServerService,
@@ -43,7 +46,8 @@ export class ManageBagComponent implements OnInit {
       .subscribe(_ => {
         this.bag.totalPrice -= element.element.bagItem.price;
         this.bag.items.splice(element.index, 1);
-        console.log('Deleted successfully');
+        this.isSnackbarVisible = true;
+        this.snackbarMessage = 'Article correctement supprimé du panier';
       }, err => console.log(err));
   }
 
@@ -55,6 +59,8 @@ export class ManageBagComponent implements OnInit {
         .subscribe(_ => {
           this.bag.items.splice(0, this.bag.items.length);
           this.bag.totalPrice = 0;
+          this.isSnackbarVisible = true;
+          this.snackbarMessage = 'Le contenu du panier a correctement été vidé';
         });
     }
   }

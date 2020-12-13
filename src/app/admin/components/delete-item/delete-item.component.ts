@@ -12,6 +12,9 @@ export class DeleteItemComponent implements OnInit {
 
   items: Items = [];
 
+  isSnackbarVisible: boolean = false;
+  snackbarMessage: string;
+
   constructor(private itemsService: ItemsServerService) {}
 
   ngOnInit(): void {
@@ -27,7 +30,11 @@ export class DeleteItemComponent implements OnInit {
     this.itemsService
       .deleteItem(item.element.id)
       .subscribe(
-        _ => this.items.splice(item.index, 1),
+        _ => {
+          this.items.splice(item.index, 1);
+          this.isSnackbarVisible = true;
+          this.snackbarMessage = 'Article supprimé correctement';
+        },
         err => console.log(err)
       );
   }

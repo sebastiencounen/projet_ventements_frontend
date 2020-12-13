@@ -46,6 +46,8 @@
 </div>
 
 <!--SNACKBAR-->
-<div class="snackbar">
-  Utilisateur bien supprimé!
-</div>
+<app-snackbar
+  [(isShown)]="isSnackbarVisible"
+  [duration]="3"
+  [message]="snackbarMessage"
+></app-snackbar>
