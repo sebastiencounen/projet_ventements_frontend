@@ -4,6 +4,11 @@ import {BagServerService} from '../../repositories/bag-server.service';
 import {ManageUserTokenService} from '../../../users/services/manage-user-token.service';
 import {ElementToDelete} from '../../../common/types/element-to-delete';
 import {BaggedItem} from '../../types/bagged-item';
+import {OrdersServerService} from '../../../orders/repositories/orders-server.service';
+import {Order} from '../../../orders/types/order';
+import {OrderedItem, OrderedItems} from '../../../orders/types/ordered-item';
+import {switchMap, tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-manage-bag',
@@ -12,12 +17,21 @@ import {BaggedItem} from '../../types/bagged-item';
 })
 export class ManageBagComponent implements OnInit {
   bag: Bag = {totalPrice: 0, items: []};
+  order: Order;
 
-  constructor(private bagService: BagServerService, private manageToken: ManageUserTokenService) {
+  constructor(private bagService: BagServerService,
+              private manageToken: ManageUserTokenService,
+              private orderService: OrdersServerService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    this.initBag();
+  }
+
+  private initBag() {
     const userId = this.manageToken.getUserIdViaToken();
+
     this.bagService
       .getUserBag(userId)
       .subscribe(bag => this.bag = bag);
@@ -70,5 +84,25 @@ export class ManageBagComponent implements OnInit {
         },
         err => console.log(err)
       );
+  }
+
+  orderItems() {
+    const userId = this.manageToken.getUserIdViaToken();
+
+    if (userId) {
+      const orderedItemsFromBag: OrderedItems =
+        this.bag.items.map(item =>
+          ({ itemId: item.bagItem.id, quantity: item.quantity, size: item.size } as OrderedItem));
+
+      this.orderService
+        .createOrder(userId)
+        .pipe(
+          tap(order => this.order = order),
+          switchMap(order =>
+            this.orderService.addOrderedItems(order.id, { orderedItems: orderedItemsFromBag }))
+        ).pipe(
+          switchMap(orderedItems => this.bagService.emptyBag(userId))
+      ).subscribe(_ => this.router.navigate(['/orders']), err => console.log(err));
+    }
   }
 }

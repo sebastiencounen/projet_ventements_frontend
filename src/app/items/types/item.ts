@@ -7,6 +7,9 @@ export interface Item {
   imageItem?: string;
   descriptionItem?: string;
   itemCategory?: Category;
+
+  quantity?: number;
+  size?: string;
 }
 
 export declare type Items = Item[];
