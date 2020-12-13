@@ -4,6 +4,9 @@ import {BagServerService} from '../../repositories/bag-server.service';
 import {ManageUserTokenService} from '../../../users/services/manage-user-token.service';
 import {ElementToDelete} from '../../../common/types/element-to-delete';
 import {BaggedItem} from '../../types/bagged-item';
+import {OrdersServerService} from '../../../orders/repositories/orders-server.service';
+import {Order} from '../../../orders/types/order';
+import {OrderedItem, OrderedItems} from '../../../orders/types/ordered-item';
 
 @Component({
   selector: 'app-manage-bag',
@@ -12,12 +15,20 @@ import {BaggedItem} from '../../types/bagged-item';
 })
 export class ManageBagComponent implements OnInit {
   bag: Bag = {totalPrice: 0, items: []};
+  order: Order;
 
-  constructor(private bagService: BagServerService, private manageToken: ManageUserTokenService) {
+  constructor(private bagService: BagServerService,
+              private manageToken: ManageUserTokenService,
+              private orderService: OrdersServerService) {
   }
 
   ngOnInit(): void {
+    this.initBag();
+  }
+
+  private initBag() {
     const userId = this.manageToken.getUserIdViaToken();
+
     this.bagService
       .getUserBag(userId)
       .subscribe(bag => this.bag = bag);
@@ -70,5 +81,36 @@ export class ManageBagComponent implements OnInit {
         },
         err => console.log(err)
       );
+  }
+
+  orderItems() {
+    const userId = this.manageToken.getUserIdViaToken();
+
+    if (userId) {
+      const orderedItems: OrderedItems = [];
+
+      this.bag.items.forEach(bagItem => {
+        const orderItem: OrderedItem = {
+          itemId: bagItem.bagItem.id,
+          quantity: bagItem.quantity,
+          size: bagItem.size
+        };
+
+        orderedItems.push(orderItem);
+      });
+
+      this.orderService
+        .createOrder(userId)
+        .subscribe(
+          order => {
+            this.order = order;
+            this.orderService
+              .addOrderedItems(order.id, orderedItems)
+              .subscribe(response => console.log(response), err => console.log(err));
+          }
+        );
+
+      console.log(orderedItems);
+    }
   }
 }
