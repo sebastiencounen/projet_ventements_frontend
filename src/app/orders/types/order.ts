@@ -5,7 +5,7 @@ export interface Order {
   id?: number;
   isPaid?: boolean;
   orderedAt?: Date;
-  totalPrice: number;
+  totalPrice?: number;
   ordered?: User;
   orderedItems?: OrderedItems;
 }
