@@ -11,6 +11,7 @@ import {ReviewsServerService} from '../../repositories/reviews-server.service';
 import {Subscription} from 'rxjs';
 import {WishlistServerService} from '../../../wishlist/repositories/wishlist-server.service';
 import {Wishlist} from '../../../wishlist/types/wishlist';
+import {ElementToDelete} from '../../../common/types/element-to-delete';
 
 @Component({
   selector: 'app-item-details',
@@ -19,6 +20,7 @@ import {Wishlist} from '../../../wishlist/types/wishlist';
 })
 export class ItemDetailsComponent implements OnInit, OnDestroy {
 
+  userId: number;
   isAuthSubscription: Subscription;
 
   item: Item = {label: ''};
@@ -47,6 +49,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getItemById();
     this.getReviews();
+    this.getUserId();
   }
 
   ngOnDestroy(): void {
@@ -75,89 +78,94 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToBag() {
-    if (this.baggedItem.quantity < 1) {
-      this.isSnackbarVisible = true;
-      this.snackbarMessage = 'Vous devez ajouter une quantité d\'au moins un article !';
-      return;
+    if (this.userId) {
+      if (this.baggedItem.quantity < 1) {
+        this.isSnackbarVisible = true;
+        this.snackbarMessage = 'Vous devez ajouter une quantité d\'au moins un article !';
+        return;
+      }
+
+      if (!this.baggedItem.size) {
+        this.isSnackbarVisible = true;
+        this.snackbarMessage = 'Veuillez préciser une taille !';
+        return;
+      }
+
+      this.bagService
+        .addItemToBag(this.userId, this.baggedItem)
+        .subscribe(
+          baggedItem => {
+            this.baggedItem = {bagItem: this.item, quantity: 1, size: ''};
+            this.isModalVisible = true;
+          },
+          err => {
+            this.isSnackbarVisible = true;
+            this.snackbarMessage = err.error.message;
+          }
+        );
+    } else {
+      this.router.navigate(['users', 'sign-in']);
     }
-
-    if (!this.baggedItem.size) {
-      this.isSnackbarVisible = true;
-      this.snackbarMessage = 'Veuillez préciser une taille !';
-      return;
-    }
-
-    this.isAuthSubscription = this.manageToken
-      .isAuthenticated()
-      .subscribe(response => {
-        if (!response) {
-          this.router.navigate(['users', 'sign-in']);
-          return;
-        }
-
-        const userId = this.manageToken.getUserIdViaToken();
-        return this.bagService
-          .addItemToBag(userId, this.baggedItem)
-          .subscribe(
-            baggedItem => {
-              this.baggedItem = {bagItem: this.item, quantity: 1, size: ''};
-              this.isModalVisible = true;
-            },
-            err => {
-              this.isSnackbarVisible = true;
-              this.snackbarMessage = err.error.message;
-            }
-          );
-      });
   }
 
   addReview(review: Review) {
-    this.isAuthSubscription = this.manageToken
-      .isAuthenticated()
-      .subscribe(response => {
-        if (!response) {
-          this.router.navigate(['users', 'sign-in']);
-          return;
-        }
-
-        const userId = this.manageToken.getUserIdViaToken();
-
-        return this.reviewService
-          .addReview(userId, this.item.id, review)
-          .subscribe(
-            review => this.reviews.push(review),
-            err => console.log(err)
-          );
-      });
+    if (this.userId) {
+      this.reviewService
+        .addReview(this.userId, this.item.id, review)
+        .subscribe(
+          review => this.reviews.push(review),
+          err => console.log(err)
+        );
+    } else {
+      this.router.navigate(['users', 'sign-in']);
+    }
   }
 
   addToWishlist() {
-    this.isAuthSubscription = this.manageToken
-      .isAuthenticated()
-      .subscribe(response => {
-        if (!response) {
-          this.router.navigate(['users', 'sign-in']);
-          return;
-        }
-
-        const userId = this.manageToken.getUserIdViaToken();
-
-        return this.wishlistService
-          .addItemToWishlist(userId, this.item.id)
-          .subscribe(
-            () => {
-              this.isSnackbarVisible = true;
-              this.snackbarMessage = 'L\'article a bien été ajouté à votre liste de souhaits';
-            },
-            err => {
-              this.isSnackbarVisible = true;
-              this.snackbarMessage = err.error.message;
-            }
-          );
-      });
+    if (this.userId) {
+      this.wishlistService
+        .addItemToWishlist(this.userId, this.item.id)
+        .subscribe(
+          () => {
+            this.isSnackbarVisible = true;
+            this.snackbarMessage = 'L\'article a bien été ajouté à votre liste de souhaits';
+          },
+          err => {
+            this.isSnackbarVisible = true;
+            this.snackbarMessage = err.error.message;
+          }
+        );
+    } else {
+      this.router.navigate(['users', 'sign-in']);
+    }
   }
 
   closeModal() {
     this.isModalVisible = false;
+  }
+
+  private getUserId() {
+    const userId = this.manageToken.getUserIdViaToken();
+    this.isAuthSubscription =
+      this.manageToken
+        .isAuthenticated()
+        .subscribe(response => response ? this.userId = userId : null);
+  }
+
+  deleteReview(review: ElementToDelete<Review>) {
+    if (this.userId) {
+      this.reviewService
+        .deleteReview(review.element.id)
+        .subscribe(
+          _ => this.reviews.splice(review.index, 1),
+          err => {
+            console.log(err);
+            this.isSnackbarVisible = true;
+            this.snackbarMessage = 'Une erreur s\'est produite';
+          }
+          )
+    } else {
+      this.router.navigate(['users', 'sign-in']);
+    }
   }
 }
