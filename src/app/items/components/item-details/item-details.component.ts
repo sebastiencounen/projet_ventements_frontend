@@ -19,6 +19,7 @@ import {Wishlist} from '../../../wishlist/types/wishlist';
 })
 export class ItemDetailsComponent implements OnInit, OnDestroy {
 
+  userId: number;
   isAuthSubscription: Subscription;
 
   item: Item = {label: ''};
@@ -47,6 +48,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getItemById();
     this.getReviews();
+    this.getUserId();
   }
 
   ngOnDestroy(): void {
@@ -159,5 +161,13 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   closeModal() {
     this.isModalVisible = false;
+  }
+
+  private getUserId() {
+    const userId = this.manageToken.getUserIdViaToken();
+    this.isAuthSubscription =
+      this.manageToken
+        .isAuthenticated()
+        .subscribe(response => response ? this.userId = userId : null);
   }
 }
