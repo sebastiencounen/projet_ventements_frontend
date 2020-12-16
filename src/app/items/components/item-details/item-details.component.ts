@@ -77,19 +77,19 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToBag() {
-    if (this.baggedItem.quantity < 1) {
-      this.isSnackbarVisible = true;
-      this.snackbarMessage = 'Vous devez ajouter une quantité d\'au moins un article !';
-      return;
-    }
-
-    if (!this.baggedItem.size) {
-      this.isSnackbarVisible = true;
-      this.snackbarMessage = 'Veuillez préciser une taille !';
-      return;
-    }
-
     if (this.userId) {
+      if (this.baggedItem.quantity < 1) {
+        this.isSnackbarVisible = true;
+        this.snackbarMessage = 'Vous devez ajouter une quantité d\'au moins un article !';
+        return;
+      }
+
+      if (!this.baggedItem.size) {
+        this.isSnackbarVisible = true;
+        this.snackbarMessage = 'Veuillez préciser une taille !';
+        return;
+      }
+
       this.bagService
         .addItemToBag(this.userId, this.baggedItem)
         .subscribe(
@@ -149,5 +149,13 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
       this.manageToken
         .isAuthenticated()
         .subscribe(response => response ? this.userId = userId : null);
+  }
+
+  deleteReview() {
+    if (this.userId) {
+
+    } else {
+      this.router.navigate(['users', 'sign-in']);
+    }
   }
 }

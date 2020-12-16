@@ -18,4 +18,8 @@ export class ReviewsServerService implements ReviewsRepository {
     return this.httpClient.post<Review>(
       ReviewsServerService.URL + userId + '/item/' + itemId, review);
   }
+
+  deleteReview(reviewId: number): Observable<any> {
+    return this.httpClient.delete(ReviewsServerService.URL + '/' + reviewId);
+  }
 }

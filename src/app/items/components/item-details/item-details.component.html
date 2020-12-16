@@ -61,7 +61,7 @@
 
             <!--Reviews-->
             <div class="column">
-              <div class="columns is-flex-direction-column">
+              <div class="columns is-flex-desktop-only is-flex-direction-column">
                 <!--Title Heading-->
                 <div class="column">
                   <h2 class="subtitle has-text-weight-semibold">Avis</h2>
@@ -73,7 +73,7 @@
                   </h2>
                 </div>
                 <div *ngIf="reviews.length">
-                  <div class="column" *ngFor="let r of reviews">
+                  <div class="column mb-5" *ngFor="let r of reviews">
                     <div class="columns is-align-items-center">
                       <!--Title-->
                       <div class="column">
@@ -85,6 +85,12 @@
                       <div class="column is-1 is-inline-block" *ngFor="let i of stars">
                         <i class="fas fa-star has-text-primary" *ngIf="i <= r.stars"></i>
                         <i class="far fa-star has-text-primary" *ngIf="i > r.stars"></i>
+                      </div>
+                      <!-- Trash - Delete review -->
+                      <div *ngIf="userId == r.reviewer.id">
+                        <a class="button is-white has-text-danger is-inline-block" (click)="deleteReview()">
+                          <i class="fas fa-trash-alt"></i>
+                        </a>
                       </div>
                     </div>
                     <!--Description-->
@@ -100,7 +106,7 @@
                   </div>
                 </div>
 
-                <div class="column mt-5">
+                <div class="column mt-3">
                   <app-review-form (reviewSubmit)="addReview($event)"></app-review-form>
                 </div>
               </div>
