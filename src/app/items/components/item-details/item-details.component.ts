@@ -89,74 +89,54 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.isAuthSubscription = this.manageToken
-      .isAuthenticated()
-      .subscribe(response => {
-        if (!response) {
-          this.router.navigate(['users', 'sign-in']);
-          return;
-        }
-
-        const userId = this.manageToken.getUserIdViaToken();
-        return this.bagService
-          .addItemToBag(userId, this.baggedItem)
-          .subscribe(
-            baggedItem => {
-              this.baggedItem = {bagItem: this.item, quantity: 1, size: ''};
-              this.isModalVisible = true;
-            },
-            err => {
-              this.isSnackbarVisible = true;
-              this.snackbarMessage = err.error.message;
-            }
-          );
-      });
+    if (this.userId) {
+      this.bagService
+        .addItemToBag(this.userId, this.baggedItem)
+        .subscribe(
+          baggedItem => {
+            this.baggedItem = {bagItem: this.item, quantity: 1, size: ''};
+            this.isModalVisible = true;
+          },
+          err => {
+            this.isSnackbarVisible = true;
+            this.snackbarMessage = err.error.message;
+          }
+        );
+    } else {
+      this.router.navigate(['users', 'sign-in']);
+    }
   }
 
   addReview(review: Review) {
-    this.isAuthSubscription = this.manageToken
-      .isAuthenticated()
-      .subscribe(response => {
-        if (!response) {
-          this.router.navigate(['users', 'sign-in']);
-          return;
-        }
-
-        const userId = this.manageToken.getUserIdViaToken();
-
-        return this.reviewService
-          .addReview(userId, this.item.id, review)
-          .subscribe(
-            review => this.reviews.push(review),
-            err => console.log(err)
-          );
-      });
+    if (this.userId) {
+      this.reviewService
+        .addReview(this.userId, this.item.id, review)
+        .subscribe(
+          review => this.reviews.push(review),
+          err => console.log(err)
+        );
+    } else {
+      this.router.navigate(['users', 'sign-in']);
+    }
   }
 
   addToWishlist() {
-    this.isAuthSubscription = this.manageToken
-      .isAuthenticated()
-      .subscribe(response => {
-        if (!response) {
-          this.router.navigate(['users', 'sign-in']);
-          return;
-        }
-
-        const userId = this.manageToken.getUserIdViaToken();
-
-        return this.wishlistService
-          .addItemToWishlist(userId, this.item.id)
-          .subscribe(
-            () => {
-              this.isSnackbarVisible = true;
-              this.snackbarMessage = 'L\'article a bien été ajouté à votre liste de souhaits';
-            },
-            err => {
-              this.isSnackbarVisible = true;
-              this.snackbarMessage = err.error.message;
-            }
-          );
-      });
+    if (this.userId) {
+      this.wishlistService
+        .addItemToWishlist(this.userId, this.item.id)
+        .subscribe(
+          () => {
+            this.isSnackbarVisible = true;
+            this.snackbarMessage = 'L\'article a bien été ajouté à votre liste de souhaits';
+          },
+          err => {
+            this.isSnackbarVisible = true;
+            this.snackbarMessage = err.error.message;
+          }
+        );
+    } else {
+      this.router.navigate(['users', 'sign-in']);
+    }
   }
 
   closeModal() {
