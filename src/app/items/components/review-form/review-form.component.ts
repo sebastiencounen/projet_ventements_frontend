@@ -16,7 +16,7 @@ export class ReviewFormComponent implements OnInit {
     title: ['', Validators.required],
     descriptionReview: ['', Validators.required]
   });
-  
+
   stars: number[] = [1, 2, 3, 4, 5];
 
   constructor(private fb: FormBuilder) { }
@@ -40,6 +40,7 @@ export class ReviewFormComponent implements OnInit {
 
   submit() {
     this.reviewSubmit.emit(this.form.value);
-    console.log(this.form.value);
+    this.form.reset();
+    this.onClickStar(0);
   }
 }
