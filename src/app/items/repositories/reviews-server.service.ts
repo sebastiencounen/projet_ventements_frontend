@@ -20,6 +20,6 @@ export class ReviewsServerService implements ReviewsRepository {
   }
 
   deleteReview(reviewId: number): Observable<any> {
-    return this.httpClient.delete(ReviewsServerService.URL + '/' + reviewId);
+    return this.httpClient.delete(ReviewsServerService.URL + reviewId);
   }
 }

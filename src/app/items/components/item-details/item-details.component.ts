@@ -11,6 +11,7 @@ import {ReviewsServerService} from '../../repositories/reviews-server.service';
 import {Subscription} from 'rxjs';
 import {WishlistServerService} from '../../../wishlist/repositories/wishlist-server.service';
 import {Wishlist} from '../../../wishlist/types/wishlist';
+import {ElementToDelete} from '../../../common/types/element-to-delete';
 
 @Component({
   selector: 'app-item-details',
@@ -151,9 +152,18 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
         .subscribe(response => response ? this.userId = userId : null);
   }
 
-  deleteReview() {
+  deleteReview(review: ElementToDelete<Review>) {
     if (this.userId) {
-
+      this.reviewService
+        .deleteReview(review.element.id)
+        .subscribe(
+          _ => this.reviews.splice(review.index, 1),
+          err => {
+            console.log(err);
+            this.isSnackbarVisible = true;
+            this.snackbarMessage = 'Une erreur s\'est produite';
+          }
+          )
     } else {
       this.router.navigate(['users', 'sign-in']);
     }

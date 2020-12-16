@@ -73,7 +73,7 @@
                   </h2>
                 </div>
                 <div *ngIf="reviews.length">
-                  <div class="column mb-5" *ngFor="let r of reviews">
+                  <div class="column mb-5" *ngFor="let r of reviews; let i = index;">
                     <div class="columns is-align-items-center">
                       <!--Title-->
                       <div class="column">
@@ -82,13 +82,14 @@
                         </h2>
                       </div>
                       <!--Stars-->
-                      <div class="column is-1 is-inline-block" *ngFor="let i of stars">
-                        <i class="fas fa-star has-text-primary" *ngIf="i <= r.stars"></i>
-                        <i class="far fa-star has-text-primary" *ngIf="i > r.stars"></i>
+                      <div class="column is-1 is-inline-block" *ngFor="let star of stars">
+                        <i class="fas fa-star has-text-primary" *ngIf="star <= r.stars"></i>
+                        <i class="far fa-star has-text-primary" *ngIf="star > r.stars"></i>
                       </div>
                       <!-- Trash - Delete review -->
                       <div *ngIf="userId == r.reviewer.id">
-                        <a class="button is-white has-text-danger is-inline-block" (click)="deleteReview()">
+                        <a class="button is-white has-text-danger is-inline-block"
+                           (click)="deleteReview({ element: r, index: i })">
                           <i class="fas fa-trash-alt"></i>
                         </a>
                       </div>
