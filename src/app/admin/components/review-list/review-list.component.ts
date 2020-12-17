@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Reviews} from '../../../items/types/review';
+import {Review, Reviews} from '../../../items/types/review';
 import {ReviewsServerService} from '../../../items/repositories/reviews-server.service';
+import {ElementToDelete} from '../../../common/types/element-to-delete';
 
 @Component({
   selector: 'app-review-list',
@@ -23,4 +24,8 @@ export class ReviewListComponent implements OnInit {
       .subscribe(reviews => this.reviews = reviews);
   }
 
+  deleteReview(review: ElementToDelete<Review>) {
+    console.log(review);
+    // TODO
+  }
 }
