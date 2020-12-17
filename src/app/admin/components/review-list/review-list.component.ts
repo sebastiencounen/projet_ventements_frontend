@@ -25,7 +25,8 @@ export class ReviewListComponent implements OnInit {
   }
 
   deleteReview(review: ElementToDelete<Review>) {
-    console.log(review);
-    // TODO
+    this.reviewService
+      .deleteReview(review.element.id)
+      .subscribe(_ => this.reviews.splice(review.index, 1));
   }
 }
