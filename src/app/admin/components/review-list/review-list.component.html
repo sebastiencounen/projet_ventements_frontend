@@ -1,0 +1,40 @@
+<h2 class="title">Tous les avis</h2>
+<div class="table-container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Utilisateur</th>
+      <th>Titre</th>
+      <th>Corps</th>
+      <th>Étoiles</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th>Utilisateur</th>
+      <th>Titre</th>
+      <th>Corps</th>
+      <th>Étoiles</th>
+      <th>Action</th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr *ngFor="let review of reviews; let i = index;">
+      <td>{{ review.reviewer.firstname }} {{ review.reviewer.lastname }}</td>
+      <td>{{ review.title }}</td>
+      <td>{{ review.descriptionReview }}</td>
+      <td>{{ review.stars }}/5</td>
+      <td>
+        <button class="button is-white has-text-danger" (click)="deleteReview({ element: review, index: i })">
+          <i class="far fa-times-circle"></i>
+        </button>
+        <button class="button is-white has-text-info" [routerLink]="['/item', review.itemReviewed.id]"
+                title="Cliquer pour se rendre à l'article correspondant">
+          <i class="fas fa-external-link-square-alt"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
