@@ -7,6 +7,7 @@ import {CategoryFormComponent} from './components/category-form/category-form.co
 import {SubCategoryFormComponent} from './components/sub-category-form/sub-category-form.component';
 import {UsersListComponent} from './components/users-list/users-list.component';
 import {DeleteItemComponent} from './components/delete-item/delete-item.component';
+import {ReviewListComponent} from './components/review-list/review-list.component';
 
 const routes: Routes = [
   { path: 'admin/dashboard', canActivate: [AdminGuardService], component: AdminDashboardComponent,
@@ -16,7 +17,8 @@ const routes: Routes = [
       { path: 'items/delete', component: DeleteItemComponent },
       { path: 'categories/add', component: CategoryFormComponent },
       { path: 'subcategories/add', component: SubCategoryFormComponent },
-      { path: 'users', component: UsersListComponent }
+      { path: 'users', component: UsersListComponent },
+      { path: 'reviews', component: ReviewListComponent }
     ]
   }
 ];
@@ -32,6 +34,7 @@ export class AdminRoutingModule {
     CategoryFormComponent,
     SubCategoryFormComponent,
     UsersListComponent,
-    DeleteItemComponent
+    DeleteItemComponent,
+    ReviewListComponent
   ];
 }
