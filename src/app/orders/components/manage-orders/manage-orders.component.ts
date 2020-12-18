@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Orders} from '../../types/order';
 import {OrdersServerService} from '../../repositories/orders-server.service';
 import {ManageUserTokenService} from '../../../users/services/manage-user-token.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-manage-orders',
@@ -26,10 +25,7 @@ export class ManageOrdersComponent implements OnInit {
     if (userId) {
       return this.ordersService
         .getOrders(userId)
-        .subscribe(orders => {
-          this.orders = orders;
-          return console.log(orders);
-        });
+        .subscribe(orders => this.orders = orders);
     }
   }
 
