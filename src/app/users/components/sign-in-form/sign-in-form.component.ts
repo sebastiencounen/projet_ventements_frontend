@@ -26,6 +26,8 @@ export class SignInFormComponent implements OnInit {
   }
 
   submit(): void {
+    // TODO
+    console.log(this.signInFrom.value);
     this.usersService.authenticate(this.signInFrom.value)
       .subscribe(user => {
         this.router.navigate(['/']);

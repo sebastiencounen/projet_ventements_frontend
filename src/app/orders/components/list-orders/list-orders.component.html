@@ -14,10 +14,10 @@
 
             <div class="column has-text-right">
               <h2 class="subtitle has-text-weight-semibold has-text-success" *ngIf="o.isPaid">
-                Prix total : {{ o.totalPrice }}€ (Payée)
+                Prix total : {{ o.totalPrice | number: '1.2' }}€ (Payée)
               </h2>
               <h2 class="subtitle has-text-weight-semibold has-text-danger" *ngIf="!o.isPaid">
-                Prix total : {{ o.totalPrice }}€ (Non payée)
+                Prix total : {{ o.totalPrice | number: '1.2' }}€ (Non payée)
               </h2>
             </div>
           </div>
