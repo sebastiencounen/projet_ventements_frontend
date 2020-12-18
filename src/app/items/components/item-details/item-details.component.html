@@ -1,0 +1,144 @@
+<section class="section">
+    <div class="container pt-6">
+      <div class="columns is-flex-desktop-only is-justify-content-space-around">
+        <!--Image item-->
+        <div class="column is-4">
+          <figure class="image">
+            <img [src]="item.imageItem" [alt]="item.label + 'image'">
+          </figure>
+        </div>
+
+        <!--Item data-->
+        <div class="column is-5">
+          <div class="columns is-flex-direction-column p-2">
+            <div class="column">
+              <h1 class="title has-text-weight-bold">
+                {{ item.label }}
+              </h1>
+            </div>
+            <div class="column">
+              <h2 class="subtitle is-size-3 has-text-weight-semibold">
+                {{ item.price }}€
+              </h2>
+            </div>
+
+            <!-- Quantity & Size -->
+            <div class="column mt-6">
+              <div class="columns is-flex-direction-row">
+                <!-- Quantity -->
+                <div class="column">
+                  <input type="number" class="input" min="1" placeholder="Quantité" [(ngModel)]="baggedItem.quantity">
+                </div>
+                <!-- Size -->
+                <div class="column">
+                  <input type="text" class="input" placeholder="Taille" [(ngModel)]="baggedItem.size">
+                </div>
+              </div>
+            </div>
+
+            <!--Bag & wishlist buttons-->
+            <div class="column">
+              <div class="columns is-flex-direction-row">
+                <div class="column">
+                  <button class="button is-primary is-medium is-fullwidth" (click)="addToBag()">
+                    <i class="fas fa-shopping-bag is-size-4"></i>
+                  </button>
+                </div>
+
+                <div class="column">
+                  <button class="button is-dark is-medium is-fullwidth" (click)="addToWishlist()">
+                    <i class="fas fa-heart is-size-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!--Description-->
+            <div class="column mt-6">
+              <h2 class="subtitle has-text-weight-semibold">Description</h2>
+              <p>{{ item.descriptionItem }}</p>
+            </div>
+
+            <!--Reviews-->
+            <div class="column">
+              <div class="columns is-flex-desktop-only is-flex-direction-column">
+                <!--Title Heading-->
+                <div class="column">
+                  <h2 class="subtitle has-text-weight-semibold">Avis</h2>
+                </div>
+                <!--Review-->
+                <div *ngIf="!reviews.length">
+                  <h2 class="title is-6 has-text-weight-bold has-text-centered">
+                    Pas encore d'avis sur cet article
+                  </h2>
+                </div>
+                <div *ngIf="reviews.length">
+                  <div class="column mb-5" *ngFor="let r of reviews; let i = index;">
+                    <div class="columns is-align-items-center">
+                      <!--Title-->
+                      <div class="column">
+                        <h2 class="title is-6 has-text-weight-bold is-italic">
+                          {{ r.title }}
+                        </h2>
+                      </div>
+                      <!--Stars-->
+                      <div class="column is-1 is-inline-block" *ngFor="let star of stars">
+                        <i class="fas fa-star has-text-primary" *ngIf="star <= r.stars"></i>
+                        <i class="far fa-star has-text-primary" *ngIf="star > r.stars"></i>
+                      </div>
+                      <!-- Trash - Delete review -->
+                      <div *ngIf="userId == r.reviewer.id">
+                        <a class="button is-white has-text-danger is-inline-block"
+                           (click)="deleteReview({ element: r, index: i })">
+                          <i class="fas fa-trash-alt"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <!--Description-->
+                    <p>
+                      {{ r.descriptionReview }}
+                    </p>
+                    <!--Reviewer-->
+                    <div class="is-flex is-justify-content-flex-end">
+                      <p class="is-right has-text-grey-light is-italic">
+                        {{ r.reviewer.firstname }} {{ r.reviewer.lastname }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column mt-3">
+                  <app-review-form (reviewSubmit)="addReview($event)"></app-review-form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" [ngClass]="{ 'is-active': isModalVisible }">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Article ajouté au panier!</p>
+      <button class="delete" aria-label="close" (click)="closeModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      Voulez-vous continuer vos achat ou vous rendre dans le panier ?
+    </section>
+    <footer class="modal-card-foot">
+      <a class="button is-success" (click)="closeModal()">Continuer mes achats</a>
+      <a class="button is-info" routerLink="/bag">Me rendre au panier</a>
+    </footer>
+  </div>
+</div>
+
+<!--SNACKBAR-->
+<app-snackbar
+  [(isShown)]="isSnackbarVisible"
+  [duration]="3"
+  [message]="snackbarMessage">
+</app-snackbar>

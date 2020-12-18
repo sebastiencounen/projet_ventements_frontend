@@ -1,0 +1,55 @@
+<div class="is-flex-direction-row">
+  <div *ngFor="let item of items; let i = index;" class="card mb-2 p-6">
+    <div class="columns is-flex-desktop-only is-vcentered">
+      <div class="column is-2">
+        <figure class="image is-inline-block is-64x64">
+          <img [src]="item.bagItem.imageItem" alt="">
+        </figure>
+      </div>
+      <div class="column is-flex-grow-1">
+        <div class="card-content">
+          <a class="has-text-weight-bold is-size-4" [routerLink]="['/item', item.bagItem.id]">
+            {{item.quantity}} x {{item.bagItem.label}}
+          </a>
+          <h2>Taille: {{item.size}}</h2>
+          <h2>Ajouté le {{item.addedAt | date: 'dd/MM/yyyy HH:mm'}}</h2>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="card-content">
+          <h1 class="title is-4 has-text-weight-bold">{{item.bagItem.price | number: '1.2'}}€</h1>
+        </div>
+      </div>
+      <div class="column is-1 is-align-items-center">
+        <div class="columns is-flex-desktop-only is-flex-direction-column">
+          <div class="column is-inline-block">
+            <a class="button is-white is-large has-text-danger" (click)="deleteBaggedItem({element: item, index: i})">
+              <i class="far fa-times-circle"></i>
+            </a>
+          </div>
+          <div class="column is-inline-block">
+            <a class="button is-white is-large has-text-info-dark" (click)="modifyBaggedItem(item)"><i class="fas fa-edit"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" [ngClass]="{ 'is-active': isModalVisible }">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modifier la quantité</p>
+      <button class="delete" aria-label="close" (click)="cancelModif()"></button>
+    </header>
+    <section class="modal-card-body">
+      <input type="number" min="0" class="input" placeholder="Nouvelle quantité" [(ngModel)]="itemToModify.quantity">
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="updateQuantity()">Sauvegarder</button>
+      <button class="button is-light" (click)="cancelModif()">Annuler</button>
+    </footer>
+  </div>
+</div>

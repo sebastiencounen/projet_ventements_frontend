@@ -1,0 +1,36 @@
+<h2 class="subtitle has-text-weight-semibold">
+  Ajouter un avis
+</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="columns is-flex-direction-column">
+    <!--Title & stars-->
+    <div class="column">
+      <div class="columns is-align-items-center">
+        <!--Title input-->
+        <div class="column">
+          <input class="input" type="text" placeholder="Titre" formControlName="title">
+        </div>
+        <!--Stars input-->
+        <div class="is-inline-block stars-input column is-1 is-flex is-flex-direction-column is-align-items-center" *ngFor="let star of stars">
+          <div (click)="onClickStar(star)">
+            <i class="far fa-star has-text-primary"></i>
+          </div>
+          <div class="is-hidden">
+            <input type="radio" name="stars" [value]="star" formControlName="stars">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <textarea class="textarea" placeholder="Donnez-nous votre avis..." formControlName="descriptionReview"></textarea>
+    </div>
+
+    <div class="column">
+      <button class="button is-primary is-fullwidth" type="submit" [disabled]="form.invalid">
+        Ajouter
+      </button>
+    </div>
+  </div>
+</form>

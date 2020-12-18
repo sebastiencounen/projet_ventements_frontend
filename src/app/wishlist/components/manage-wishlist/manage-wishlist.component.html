@@ -1,0 +1,20 @@
+<section class="section">
+  <h1 class="title">Liste de souhaits ({{ wishlistItems.length }})</h1>
+  <app-list-wishlist [wishlists]="wishlistItems"
+                     (wishlistDeleted)="deleteWishlistItem($event)"></app-list-wishlist>
+</section>
+
+<section class="section" *ngIf="!wishlistItems.length">
+  <div
+    class="
+      is-fullheight
+      is-flex
+      is-flex-direction-column
+      is-justify-content-center
+      is-align-items-center">
+    <h1 class="title is-4">
+      <span>Vous n'avez encore rien ajouté à votre liste de souhaits. </span>
+      <a class="has-text-link" routerLink="/">Consulter les articles.</a>
+    </h1>
+  </div>
+</section>

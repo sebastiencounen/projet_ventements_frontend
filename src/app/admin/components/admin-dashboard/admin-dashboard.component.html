@@ -1,0 +1,29 @@
+<div class="columns is-flex-desktop-only is-flex-direction-row">
+  <div class="column is-3">
+    <aside class="menu py-6">
+      <p class="menu-label">Utilisateurs</p>
+      <ul class="menu-list">
+        <li><a routerLink="users" routerLinkActive="is-active">Gérer les utilisateurs inscrits</a></li>
+      </ul>
+      <p class="menu-label">Catégories</p>
+      <ul class="menu-list">
+        <li><a routerLink="categories/add" routerLinkActive="is-active">Ajouter une catégorie</a></li>
+        <li><a routerLink="subcategories/add" routerLinkActive="is-active">Ajouter une sous-catégorie</a></li>
+      </ul>
+      <p class="menu-label">Articles</p>
+      <ul class="menu-list">
+        <li><a routerLink="items/add" routerLinkActive="is-active">Ajouter un article</a></li>
+        <li><a routerLink="items/delete" routerLinkActive="is-active">Gérer les articles</a></li>
+      </ul>
+      <p class="menu-label">Avis</p>
+      <ul class="menu-list">
+        <li><a routerLink="reviews" routerLinkActive="is-active">Gérer les avis utilisateurs</a></li>
+      </ul>
+    </aside>
+  </div>
+  <div class="column">
+    <section class="section">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</div>

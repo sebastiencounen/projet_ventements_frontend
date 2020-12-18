@@ -1,0 +1,16 @@
+<section class="section" *ngFor="let cat of categories">
+  <div class="container mt-3">
+    <h1 class="title">{{ cat.title }}</h1>
+    <div class="columns is-centered">
+      <div class="column" *ngFor="let sub of cat.subCategories">
+        <a [routerLink]="['/category', sub.id, 'items']">
+          <div class="card has-background-link">
+            <div class="card-content p-5">
+              <h2 class="subtitle has-text-centered has-text-white">{{ sub.title }}</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

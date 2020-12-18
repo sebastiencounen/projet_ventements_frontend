@@ -1,0 +1,56 @@
+<section class="section py-6">
+  <h1 class="title">Commandes réalisées ({{orders.length}})</h1>
+  <div class="columns is-flex-desktop-only is-flex-direction-column mt-3" *ngIf="orders">
+    <div class="column mt-3" *ngFor="let o of orders">
+      <div class="columns is-flex-desktop-only is-flex-direction-column">
+        <!--Title-->
+        <div class="column">
+          <div class="columns is-flex-desktop-only">
+            <div class="column">
+                <h2 class="subtitle">
+                  Commandé le {{ o.orderedAt | date: 'dd/MM/yyyy à HH:mm' }}
+                </h2>
+            </div>
+
+            <div class="column has-text-right">
+              <h2 class="subtitle has-text-weight-semibold has-text-success" *ngIf="o.isPaid">
+                Prix total : {{ o.totalPrice | number: '1.2' }}€ (Payée)
+              </h2>
+              <h2 class="subtitle has-text-weight-semibold has-text-danger" *ngIf="!o.isPaid">
+                Prix total : {{ o.totalPrice | number: '1.2' }}€ (Non payée)
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        <div *ngFor="let orderedItem of o.orderedItems; let i = index;" class="card mb-2 p-5">
+          <div class="columns is-flex-desktop-only is-align-items-center is-justify-content-space-around">
+            <div class="column is-1 mx-6">
+              <figure class="image">
+                <img [src]="orderedItem.imageItem" [alt]="orderedItem.label">
+              </figure>
+            </div>
+
+            <div class="column mx-6">
+              <div class="columns is-flex-desktop-only is-flex-direction-column">
+                <div class="column p-0">
+                  <a class="has-text-weight-bold has-text-link is-size-4" [routerLink]="['/item', orderedItem.id]">
+                    {{orderedItem.quantity}} x {{orderedItem.label}}
+                  </a>
+                </div>
+
+                <div class="column p-0">
+                  <p>Taille: {{ orderedItem.size }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="column has-text-centered mx-6">
+              <h1 class="title is-4 has-text-weight-bold">{{orderedItem.price | number: '1.2'}}€</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

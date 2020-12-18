@@ -1,0 +1,49 @@
+<h2 class="title">Ajouter un article</h2>
+<form [formGroup]="itemForm" (ngSubmit)="submit()" class="column is-8">
+  <div class="field">
+    <div class="control">
+      <app-file-uploader (imageUploaded)="onImageUploaded($event)"></app-file-uploader>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control is-flex is-align-items-center">
+      <span class="has-text-weight-bold">
+        Catégorie
+      </span>
+      <div class="select ml-2">
+        <select formControlName="categoryId">
+          <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.title }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <input type="text" class="input" placeholder="Label" formControlName="label">
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <input type="number" class="input" min="0.01" step="0.01" placeholder="Prix" formControlName="price">
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <input
+        type="text"
+        readonly
+        class="input"
+        style="cursor: text"
+        placeholder="Lien de l'image"
+        formControlName="imageItem">
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <textarea class="textarea" placeholder="Description de l'article" formControlName="descriptionItem"></textarea>
+    </div>
+  </div>
+  <div class="field">
+    <button type="submit" class="button is-primary" [disabled]="itemForm.invalid || !hostedImageUrl">Ajouter</button>
+  </div>
+</form>

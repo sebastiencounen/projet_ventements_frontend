@@ -1,0 +1,38 @@
+<h1 class="title is-centered">Informations de l'utilisateur</h1>
+<div class="has-text-left ml-4">
+  <ul *ngIf="user">
+    <li><span class="has-text-weight-bold">Id utilisateur:</span> {{ user.id }}</li>
+    <li><span class="has-text-weight-bold">Prénom:</span> {{ user.firstname }}</li>
+    <li><span class="has-text-weight-bold">Nom:</span> {{ user.lastname }}</li>
+    <li><span class="has-text-weight-bold">Adresse mail:</span> {{ user.email }}</li>
+    <li><span class="has-text-weight-bold">Date de naissance:</span> {{ user.birthdate | date: 'dd/MM/yyyy' }}
+    </li>
+    <li class="block"><span class="has-text-weight-bold">Sexe:</span> {{ user.gender }}</li>
+    <li>
+      <span *ngIf="!user.userAddress" class="has-text-weight-bold">
+        Aucun adresse enregistrée
+      </span>
+      <div class="mt-6" *ngIf="!user.userAddress">
+        <app-register-address-form (addressSubmit)="submitAddress($event)"></app-register-address-form>
+      </div>
+      <div *ngIf="user.userAddress">
+        <p class="has-text-weight-bold">Adresse:</p>
+        <a class="mb-2 is-inline-block" (click)="modifyAddress()">
+          <span *ngIf="!updateAddress">Modifier</span>
+          <span *ngIf="updateAddress">Annuler</span>
+        </a>
+        <ul *ngIf="!updateAddress">
+          <li><span class="has-text-weight-bold">Id Adresse:</span> {{ user.userAddress.id }}</li>
+          <li><span class="has-text-weight-bold">Rue:</span> {{ user.userAddress.street }}</li>
+          <li><span class="has-text-weight-bold">Numéro:</span> {{ user.userAddress.homeNumber }}</li>
+          <li><span class="has-text-weight-bold">Ville:</span> {{ user.userAddress.city }}</li>
+          <li><span class="has-text-weight-bold">Code postal:</span> {{ user.userAddress.zip }}</li>
+        </ul>
+        <div *ngIf="updateAddress">
+          <app-register-address-form [addressToUpdate]="user.userAddress"
+                                     (addressSubmit)="submitAddress($event)"></app-register-address-form>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

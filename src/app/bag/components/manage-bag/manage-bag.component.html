@@ -1,0 +1,40 @@
+<section class="section" *ngIf="!bag.items.length">
+  <div
+    class="
+      is-fullheight
+      is-flex
+      is-flex-direction-column
+      is-justify-content-center
+      is-align-items-center">
+    <h1 class="title is-2">Panier</h1>
+    <h1 class="title is-4">
+      <span>Vous n'avez encore rien dans votre panier. </span>
+      <a routerLink="/">Consulter les articles.</a>
+    </h1>
+  </div>
+</section>
+<section class="section" *ngIf="bag.items.length">
+  <div class="columns is-justify-content-space-between">
+    <div class="column is-narrow">
+      <h1 class="title is-2">Panier ({{ bag.items.length }})</h1>
+      <h1 class="title is-4">Prix total: {{ bag.totalPrice | number: '1.2' }}€</h1>
+    </div>
+    <div class="column is-narrow">
+      <div class="buttons">
+        <a class="button is-danger" (click)="emptyBag()">Vider le panier</a>
+        <a class="button is-success" (click)="orderItems()">Commander</a>
+      </div>
+    </div>
+  </div>
+  <app-list-bagged-items
+    [items]="bag.items"
+    (baggedItemDeleted)="deleteBaggedItem($event)"
+    (baggedItemModified)="updateBaggedItem($event)"
+  ></app-list-bagged-items>
+</section>
+
+<app-snackbar
+  [(isShown)]="isSnackbarVisible"
+  [duration]="3"
+  [message]="snackbarMessage"
+></app-snackbar>
